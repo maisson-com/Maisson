@@ -69,7 +69,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
-            const productId = params.get('id'); // HATA DÜZELTİLDİ: parseInt yok
+            const productId = params.get('id'); 
             if (!db || !productId) return;
 
             const productRef = dbRef(db, 'products/' + productId);
@@ -92,6 +92,7 @@
                     });
                 }
 
+                // SEPETE EKLE BUTONU SİLİNDİ
                 container.innerHTML = `
                     <div class="product-gallery">
                         <div class="product-image-large"><img src="${allImages[0]}" id="mainProductImage"></div>
@@ -101,7 +102,6 @@
                         <h1>${product.name}</h1>
                         <div class="product-price-large">${product.price} TL</div>
                         <div class="size-buttons">${sizeButtonsHTML}</div>
-                        <button class="btn-primary" style="width:100%; padding:15px;" onclick="alert('Sepet sistemi yakında eklenecek.')">SEPETE EKLE</button>
                     </div>
                 `;
             });
