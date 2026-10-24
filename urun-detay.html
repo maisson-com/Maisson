@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ürün Detayı | MAISSON</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .product-detail-page { max-width: 1200px; margin: 40px auto; padding: 0 50px; display: flex; gap: 50px; }
@@ -29,12 +29,7 @@
     <header>
         <div class="header-left">
             <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
-                    <li><a href="index.html#categories-section" data-tr="Koleksiyonlar" data-en="Collections" data-ar="المجموعات">Koleksiyonlar</a></li>
-                </ul>
-            </nav>
+            <nav><ul><li><a href="index.html">Ana Sayfa</a></li></ul></nav>
         </div>
         <div class="header-right">
             <div class="lang-selector">
@@ -51,7 +46,6 @@
 
     <script type="module" src="dil.js"></script>
     <script type="module">
-        // Admin Butonu Kontrolü
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === '1') sessionStorage.setItem('maissonAdminMode', 'true');
@@ -69,14 +63,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
-            const productId = params.get('id'); 
+            const productId = params.get('id');
             if (!db || !productId) return;
 
             const productRef = dbRef(db, 'products/' + productId);
             dbOnValue(productRef, (snapshot) => {
                 const product = snapshot.val();
                 const container = document.getElementById('productDetailContainer');
-                
                 if (!product) { container.innerHTML = '<h2>Ürün bulunamadı.</h2>'; return; }
 
                 let allImages = product.images || [product.image];
@@ -92,7 +85,6 @@
                     });
                 }
 
-                // SEPETE EKLE BUTONU SİLİNDİ
                 container.innerHTML = `
                     <div class="product-gallery">
                         <div class="product-image-large"><img src="${allImages[0]}" id="mainProductImage"></div>
@@ -112,7 +104,6 @@
             document.querySelectorAll('.thumbnail-list img').forEach(img => img.classList.remove('active'));
             thumb.classList.add('active');
         };
-
         window.selectSize = function(btn) {
             document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
