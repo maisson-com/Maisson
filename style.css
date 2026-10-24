@@ -33,9 +33,7 @@ body.rtl .section-subtitle, body.rtl .category-info p, body.rtl .product-link, b
 header { position: fixed; top: 0; width: 100%; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; border-bottom: 1px solid rgba(201, 169, 110, 0.15); backdrop-filter: blur(10px); gap: 20px; transition: background-color 0.4s ease; }
 .header-left { display: flex; align-items: center; gap: 30px; flex-shrink: 0; }
 
-/* ============================================
-   LOGO SABİTLEME (Her Zaman Beyaz Kalacak)
-   ============================================ */
+/* LOGO SABİTLEME (Her Zaman Beyaz Kalacak) */
 .logo { 
     display: flex; 
     align-items: center; 
