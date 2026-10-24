@@ -1,6 +1,3 @@
-// ============================================
-// FIREBASE BAĞLANTISI
-// ============================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue, push, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
@@ -17,17 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// HTML dosyalarından erişebilmek için global yapıyoruz
 window.firebaseDB = database;
 window.firebaseRef = ref;
 window.firebaseSet = set;
 window.firebaseOnValue = onValue;
 window.firebasePush = push;
-window.firebaseRemove = remove;
 
-// ============================================
-// DİL + TEMA SİSTEMİ
-// ============================================
 function changeLang(lang, btn) {
     if (btn) {
         document.querySelectorAll('.lang-selector button').forEach(b => b.classList.remove('active'));
@@ -41,7 +33,6 @@ function applyLanguage(lang) {
     document.documentElement.setAttribute('lang', lang);
     if (lang === 'ar') document.body.classList.add('rtl');
     else document.body.classList.remove('rtl');
-    
     document.querySelectorAll(`[data-${lang}]`).forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
     });
@@ -71,6 +62,5 @@ document.addEventListener('DOMContentLoaded', function() {
     else { document.body.classList.remove('light-mode'); if (icon) icon.textContent = '🌙'; }
 });
 
-// Global fonksiyonlar
 window.changeLang = changeLang;
 window.toggleTheme = toggleTheme;
