@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAISSON | Yönetici Paneli</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body { padding-top: 100px; }
@@ -44,13 +44,7 @@
     <header>
         <div class="header-left">
             <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="admin.html" class="active">🔧 Yönetici Paneli</a></li>
-                    <!-- Admin Modu URL'si Düzeltildi -->
-                    <li><a href="index.html?admin=1">👁️ Siteyi Gör</a></li>
-                </ul>
-            </nav>
+            <nav><ul><li><a href="admin.html" class="active">🔧 Yönetici Paneli</a></li><li><a href="index.html?admin=1">👁️ Siteyi Gör</a></li></ul></nav>
         </div>
         <div class="header-right">
             <div class="lang-selector">
@@ -71,7 +65,6 @@
             </ul>
         </aside>
         <main class="admin-content">
-            <!-- ÜRÜN EKLE -->
             <div id="tab-urun-ekle" class="admin-tab active">
                 <h2 class="admin-page-title">YENİ ÜRÜN EKLE</h2>
                 <form class="admin-form" onsubmit="addProduct(event)">
@@ -104,7 +97,6 @@
                 </form>
             </div>
 
-            <!-- KOLEKSİYON EKLE -->
             <div id="tab-koleksiyon-ekle" class="admin-tab">
                 <h2 class="admin-page-title">YENİ KOLEKSİYON EKLE</h2>
                 <form class="admin-form" onsubmit="addCollection(event)">
