@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çorap | Maisson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">M<span>aisson</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
+                <li><a href="tisort.html" data-tr="Tişört" data-ku="Kiras" data-ar="تي شيرت">Tişört</a></li>
+                <li><a href="sweatshirt.html" data-tr="Sweatshirt" data-ku="Sweatshirt" data-ar="سويت شيرت">Sweatshirt</a></li>
+                <li><a href="mont.html" data-tr="Mont & Ceket" data-ku="Kurt û Cakêt" data-ar="معطف وسترة">Mont & Ceket</a></li>
+                <li><a href="corap.html" class="active" data-tr="Çorap" data-ku="Gore" data-ar="جوارب">Çorap</a></li>
+                <li><a href="indirimler.html" data-tr="İndirimler" data-ku="Daxistin" data-ar="تخفيضات">İndirimler</a></li>
+            </ul>
+        </nav>
+        <div class="lang-selector">
+            <button onclick="changeLang('tr', this)">TR</button>
+            <button onclick="changeLang('ku', this)">KU</button>
+            <button onclick="changeLang('ar', this)">AR</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1 data-tr="ÇORAP KOLEKSİYONU" data-ku="KOLEKSIYONA GOREYAN" data-ar="مجموعة الجوارب">ÇORAP KOLEKSİYONU</h1>
+            <p data-tr="Detaylarda Şıklık" data-ku="Şikayî di Hûragahiyan de" data-ar="الأناقة في التفاصيل">Detaylarda Şıklık</p>
+        </div>
+    </section>
+
+    <section class="shop-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4 data-tr="BEDEN" data-ku="MEZIN" data-ar="المقاس">BEDEN</h4>
+                <label><input type="checkbox"> 39-42</label>
+                <label><input type="checkbox"> 43-46</label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="RENK" data-ku="RENG" data-ar="اللون">RENK</h4>
+                <label><input type="checkbox"> <span data-tr="Siyah" data-ku="Reş" data-ar="أسود">Siyah</span></label>
+                <label><input type="checkbox"> <span data-tr="Beyaz" data-ku="Spî" data-ar="أبيض">Beyaz</span></label>
+                <label><input type="checkbox"> <span data-tr="Desenli" data-ku="Nexşkirî" data-ar="منقوش">Desenli</span></label>
+            </div>
+        </aside>
+
+        <div class="product-area">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1582966772680-860e372bb558?q=80&w=800&auto=format&fit=crop" alt="Çorap">
+                    <div class="product-info">
+                        <h4 data-tr="Basic Siyah Çorap" data-ku="Goreya Reş a Basic" data-ar="جوارب سوداء أساسية">Basic Siyah Çorap</h4>
+                        <div class="price">79 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=800&auto=format&fit=crop" alt="Çorap">
+                    <div class="product-info">
+                        <h4 data-tr="Desenli Çorap Seti" data-ku="Seta Goreyên Nexşkirî" data-ar="طقم جوارب منقوشة">Desenli Çorap Seti</h4>
+                        <div class="price">149 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=800&auto=format&fit=crop" alt="Çorap">
+                    <div class="product-info">
+                        <h4 data-tr="Spor Çorap 3'lü" data-ku="Goreyên Sporê 3" data-ar="جوارب رياضية ٣ قطع">Spor Çorap 3'lü</h4>
+                        <div class="price">199 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=800&auto=format&fit=crop" alt="Çorap">
+                    <div class="product-info">
+                        <h4 data-tr="Pamuklu Günlük Çorap" data-ku="Goreya Pembû ya Rojane" data-ar="جوارب قطنية يومية">Pamuklu Günlük Çorap</h4>
+                        <div class="price">99 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ MAİSSON. جميع الحقوق محفوظة.">© 2024 MAİSSON. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="dil.js"></script>
+</body>
+</html>

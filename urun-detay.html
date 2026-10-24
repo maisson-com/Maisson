@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Detayı | MAISSON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        .product-detail-page { max-width: 1200px; margin: 40px auto; padding: 0 50px; display: flex; gap: 50px; }
+        .product-gallery { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .product-image-large { border: 1px solid var(--border-color); background-color: var(--card-bg); }
+        .product-image-large img { width: 100%; display: block; }
+        .thumbnail-list { display: flex; gap: 10px; flex-wrap: wrap; }
+        .thumbnail-list img { width: 80px; height: 80px; object-fit: cover; border: 2px solid transparent; cursor: pointer; opacity: 0.6; }
+        .thumbnail-list img.active { border-color: var(--gold); opacity: 1; }
+        .product-details { flex: 1; }
+        .product-details h1 { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--light-text); margin-bottom: 20px; }
+        .product-price-large { font-size: 2rem; color: var(--gold); margin-bottom: 30px; }
+        .size-buttons { display: flex; gap: 10px; margin-bottom: 30px; }
+        .size-btn { background: transparent; border: 1px solid var(--border-color); color: var(--light-text); padding: 10px 20px; cursor: pointer; }
+        .size-btn.active { background: var(--gold); color: var(--dark-bg); }
+        .size-btn.out-of-stock { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+        @media (max-width: 900px) { .product-detail-page { flex-direction: column; padding: 0 20px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
+                    <li><a href="index.html#categories-section" data-tr="Koleksiyonlar" data-en="Collections" data-ar="المجموعات">Koleksiyonlar</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="lang-selector">
+                <button class="active" onclick="changeLang('tr', this)">TR</button>
+                <button onclick="changeLang('en', this)">EN</button>
+                <button onclick="changeLang('ar', this)">AR</button>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
+            <div id="adminBtnContainer"></div>
+        </div>
+    </header>
+
+    <div class="product-detail-page" id="productDetailContainer"></div>
+
+    <script type="module" src="dil.js"></script>
+    <script type="module">
+        // Admin Butonu Kontrolü
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === '1') sessionStorage.setItem('maissonAdminMode', 'true');
+            if (sessionStorage.getItem('maissonAdminMode') === 'true') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    const container = document.getElementById('adminBtnContainer');
+                    if (container) container.innerHTML = '<a href="admin.html" class="admin-btn">🔧 <span>Yöneticiye Dön</span></a>';
+                });
+            }
+        })();
+
+        const db = window.firebaseDB;
+        const dbRef = window.firebaseRef;
+        const dbOnValue = window.firebaseOnValue;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id'); // HATA DÜZELTİLDİ: parseInt yok
+            if (!db || !productId) return;
+
+            const productRef = dbRef(db, 'products/' + productId);
+            dbOnValue(productRef, (snapshot) => {
+                const product = snapshot.val();
+                const container = document.getElementById('productDetailContainer');
+                
+                if (!product) { container.innerHTML = '<h2>Ürün bulunamadı.</h2>'; return; }
+
+                let allImages = product.images || [product.image];
+                let thumbnailsHTML = allImages.map((img, index) => 
+                    `<img src="${img}" class="${index === 0 ? 'active' : ''}" onclick="changeMainImage(this, '${img}')">`
+                ).join('');
+
+                let sizeButtonsHTML = '';
+                if (product.stock) {
+                    Object.entries(product.stock).forEach(([size, qty]) => {
+                        const isOut = qty === 0 ? 'out-of-stock' : '';
+                        sizeButtonsHTML += `<button class="size-btn ${isOut}" ${qty === 0 ? 'disabled' : ''} onclick="selectSize(this)">${size}</button>`;
+                    });
+                }
+
+                container.innerHTML = `
+                    <div class="product-gallery">
+                        <div class="product-image-large"><img src="${allImages[0]}" id="mainProductImage"></div>
+                        <div class="thumbnail-list">${thumbnailsHTML}</div>
+                    </div>
+                    <div class="product-details">
+                        <h1>${product.name}</h1>
+                        <div class="product-price-large">${product.price} TL</div>
+                        <div class="size-buttons">${sizeButtonsHTML}</div>
+                        <button class="btn-primary" style="width:100%; padding:15px;" onclick="alert('Sepet sistemi yakında eklenecek.')">SEPETE EKLE</button>
+                    </div>
+                `;
+            });
+        });
+
+        window.changeMainImage = function(thumb, src) {
+            document.getElementById('mainProductImage').src = src;
+            document.querySelectorAll('.thumbnail-list img').forEach(img => img.classList.remove('active'));
+            thumb.classList.add('active');
+        };
+
+        window.selectSize = function(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+    </script>
+</body>
+</html>

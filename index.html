@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISSON | Premium Erkek Giyim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
+                    <li><a href="#categories-section" data-tr="Koleksiyonlar" data-en="Collections" data-ar="المجموعات">Koleksiyonlar</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-center">
+            <div class="trendyol-search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Ürün, kategori veya marka ara..." autocomplete="off">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="lang-selector">
+                <button class="active" onclick="changeLang('tr', this)">TR</button>
+                <button onclick="changeLang('en', this)">EN</button>
+                <button onclick="changeLang('ar', this)">AR</button>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
+            <!-- Admin butonu için yer tutucu -->
+            <div id="adminBtnContainer"></div>
+        </div>
+    </header>
+
+    <section class="hero hero-video">
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="videos/tanitim.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+        <div class="hero-content">
+            <h1>MAISSON</h1>
+            <p data-tr="Özenle Dokundu, Kaliteyle Sunuldu" data-en="Woven with Care, Presented with Quality" data-ar="منسوج بعناية، ومقدم بجودة عالية">Özenle Dokundu, Kaliteyle Sunuldu</p>
+        </div>
+    </section>
+
+    <section class="category-section" id="categories-section">
+        <div class="section-header">
+            <h2 class="section-title" data-tr="KATEGORİLER" data-en="CATEGORIES" data-ar="الفئات">KATEGORİLER</h2>
+        </div>
+        <div class="category-grid" id="dynamicCategories"></div>
+    </section>
+
+    <section class="shop-layout">
+        <div class="product-area" style="width:100%;">
+            <h2 class="section-title" style="text-align:center; margin-bottom:40px;" data-tr="ÖNE ÇIKAN ÜRÜNLER" data-en="FEATURED PRODUCTS" data-ar="المنتجات المميزة">ÖNE ÇIKAN ÜRÜNLER</h2>
+            <div class="product-grid" id="dynamicProducts"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="kvkk.html">KVKK & Çerezler</a>
+        </div>
+        <p>© 2024 Maisson. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script type="module" src="dil.js"></script>
+    <script type="module">
+        // Admin Butonu Kontrolü
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === '1') sessionStorage.setItem('maissonAdminMode', 'true');
+            if (sessionStorage.getItem('maissonAdminMode') === 'true') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    const container = document.getElementById('adminBtnContainer');
+                    if (container) container.innerHTML = '<a href="admin.html" class="admin-btn">🔧 <span>Yöneticiye Dön</span></a>';
+                });
+            }
+        })();
+
+        const db = window.firebaseDB;
+        const dbRef = window.firebaseRef;
+        const dbOnValue = window.firebaseOnValue;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!db) return;
+            
+            const collectionsRef = dbRef(db, 'collections');
+            dbOnValue(collectionsRef, (snapshot) => {
+                const data = snapshot.val();
+                const grid = document.getElementById('dynamicCategories');
+                if (!data) { grid.innerHTML = '<p style="text-align:center; width:100%;">Henüz koleksiyon yok.</p>'; return; }
+                const collections = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                grid.innerHTML = collections.map(c => `
+                    <a href="kategori.html?type=${c.type}" class="category-card">
+                        <img src="${c.image}" alt="${c.name}">
+                        <div class="category-info"><h3>${c.name}</h3></div>
+                    </a>
+                `).join('');
+            });
+
+            const productsRef = dbRef(db, 'products');
+            dbOnValue(productsRef, (snapshot) => {
+                const data = snapshot.val();
+                const grid = document.getElementById('dynamicProducts');
+                if (!data) { grid.innerHTML = '<p style="text-align:center; width:100%;">Henüz ürün yok.</p>'; return; }
+                const products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                grid.innerHTML = products.slice(0, 8).map(p => {
+                    const link = `urun-detay.html?id=${p.id}`;
+                    const coverImage = p.images ? p.images[0] : p.image;
+                    return `
+                        <div class="product-card" onclick="window.location.href='${link}'" style="cursor:pointer;">
+                            <img src="${coverImage}" alt="${p.name}">
+                            <div class="product-info">
+                                <h4>${p.name}</h4>
+                                <div class="price">${p.price} TL</div>
+                                <a href="${link}" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            });
+        });
+    </script>
+</body>
+</html>

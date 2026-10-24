@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tişört | Maisson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">M<span>aisson</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
+                <li><a href="tisort.html" class="active" data-tr="Tişört" data-ku="Kiras" data-ar="تي شيرت">Tişört</a></li>
+                <li><a href="sweatshirt.html" data-tr="Sweatshirt" data-ku="Sweatshirt" data-ar="سويت شيرت">Sweatshirt</a></li>
+                <li><a href="mont.html" data-tr="Mont & Ceket" data-ku="Kurt û Cakêt" data-ar="معطف وسترة">Mont & Ceket</a></li>
+                <li><a href="corap.html" data-tr="Çorap" data-ku="Gore" data-ar="جوارب">Çorap</a></li>
+                <li><a href="indirimler.html" data-tr="İndirimler" data-ku="Daxistin" data-ar="تخفيضات">İndirimler</a></li>
+            </ul>
+        </nav>
+        <div class="lang-selector">
+            <button onclick="changeLang('tr', this)">TR</button>
+            <button onclick="changeLang('ku', this)">KU</button>
+            <button onclick="changeLang('ar', this)">AR</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1 data-tr="TİŞÖRT KOLEKSİYONU" data-ku="KOLEKSIYONA KIRASAN" data-ar="مجموعة تي شيرت">TİŞÖRT KOLEKSİYONU</h1>
+            <p data-tr="Rahat ve Şık Parçalar" data-ku="Perçeyên Rehet û Şik" data-ar="قطع مريحة وأنيقة">Rahat ve Şık Parçalar</p>
+        </div>
+    </section>
+
+    <section class="shop-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4 data-tr="BEDEN" data-ku="MEZIN" data-ar="المقاس">BEDEN</h4>
+                <label><input type="checkbox"> S</label>
+                <label><input type="checkbox"> M</label>
+                <label><input type="checkbox"> L</label>
+                <label><input type="checkbox"> XL</label>
+                <label><input type="checkbox"> XXL</label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="RENK" data-ku="RENG" data-ar="اللون">RENK</h4>
+                <label><input type="checkbox"> <span data-tr="Siyah" data-ku="Reş" data-ar="أسود">Siyah</span></label>
+                <label><input type="checkbox"> <span data-tr="Beyaz" data-ku="Spî" data-ar="أبيض">Beyaz</span></label>
+                <label><input type="checkbox"> <span data-tr="Gri" data-ku="Gewr" data-ar="رمادي">Gri</span></label>
+                <label><input type="checkbox"> <span data-tr="Lacivert" data-ku="Şîn" data-ar="كحلي">Lacivert</span></label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="FİYAT" data-ku="BIHA" data-ar="السعر">FİYAT</h4>
+                <label><input type="checkbox"> 0 - 500 TL</label>
+                <label><input type="checkbox"> 500 - 1000 TL</label>
+            </div>
+        </aside>
+
+        <div class="product-area">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Basic Beyaz Tişört" data-ku="Kirasê Spî Basic" data-ar="تي شيرت أبيض أساسي">Basic Beyaz Tişört</h4>
+                        <div class="price">349 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Oversize Siyah Tişört" data-ku="Kirasê Reş Oversize" data-ar="تي شيرت أسود واسع">Oversize Siyah Tişört</h4>
+                        <div class="price">399 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Gri Basic Tişört" data-ku="Kirasê Gewr Basic" data-ar="تي شيرت رمادي أساسي">Gri Basic Tişört</h4>
+                        <div class="price">329 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Lacivert Tişört" data-ku="Kirasê Şîn" data-ar="تي شيرت كحلي">Lacivert Tişört</h4>
+                        <div class="price">379 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Baskılı Tişört" data-ku="Kirasê Çapkirî" data-ar="تي شيرت مطبوع">Baskılı Tişört</h4>
+                        <div class="price">449 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=800&auto=format&fit=crop" alt="Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Uzun Kollu Tişört" data-ku="Kirasê Destdirêj" data-ar="تي شيرت بأكمام طويلة">Uzun Kollu Tişört</h4>
+                        <div class="price">499 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="dil.js"></script>
+</body>
+</html>

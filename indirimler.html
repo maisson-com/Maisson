@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İndirimler | Maisson</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">M<span>aisson</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
+                <li><a href="tisort.html" data-tr="Tişört" data-ku="Kiras" data-ar="تي شيرت">Tişört</a></li>
+                <li><a href="sweatshirt.html" data-tr="Sweatshirt" data-ku="Sweatshirt" data-ar="سويت شيرت">Sweatshirt</a></li>
+                <li><a href="mont.html" data-tr="Mont & Ceket" data-ku="Kurt û Cakêt" data-ar="معطف وسترة">Mont & Ceket</a></li>
+                <li><a href="corap.html" data-tr="Çorap" data-ku="Gore" data-ar="جوارب">Çorap</a></li>
+                <li><a href="indirimler.html" class="active" data-tr="İndirimler" data-ku="Daxistin" data-ar="تخفيضات">İndirimler</a></li>
+            </ul>
+        </nav>
+        <div class="lang-selector">
+            <button onclick="changeLang('tr', this)">TR</button>
+            <button onclick="changeLang('ku', this)">KU</button>
+            <button onclick="changeLang('ar', this)">AR</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1 data-tr="İNDİRİMLER" data-ku="DAXISTIN" data-ar="تخفيضات">İNDİRİMLER</h1>
+            <p data-tr="Fırsatı Kaçırma" data-ku="Firsatê Winda Neke" data-ar="لا تفوت الفرصة">Fırsatı Kaçırma</p>
+        </div>
+    </section>
+
+    <section class="shop-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4 data-tr="KATEGORİ" data-ku="KATEGORÎ" data-ar="الفئة">KATEGORİ</h4>
+                <label><input type="checkbox"> <span data-tr="Tişört" data-ku="Kiras" data-ar="تي شيرت">Tişört</span></label>
+                <label><input type="checkbox"> <span data-tr="Sweatshirt" data-ku="Sweatshirt" data-ar="سويت شيرت">Sweatshirt</span></label>
+                <label><input type="checkbox"> <span data-tr="Mont" data-ku="Kurt" data-ar="معطف">Mont</span></label>
+                <label><input type="checkbox"> <span data-tr="Çorap" data-ku="Gore" data-ar="جوارب">Çorap</span></label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="İNDİRİM ORANI" data-ku="RÊJEYA DAXISTINÊ" data-ar="نسبة الخصم">İNDİRİM ORANI</h4>
+                <label><input type="checkbox"> %20 ve üzeri</label>
+                <label><input type="checkbox"> %30 ve üzeri</label>
+                <label><input type="checkbox"> %50 ve üzeri</label>
+            </div>
+        </aside>
+
+        <div class="product-area">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" alt="İndirimli Tişört">
+                    <div class="product-info">
+                        <h4 data-tr="Basic Beyaz Tişört" data-ku="Kirasê Spî Basic" data-ar="تي شيرت أبيض أساسي">Basic Beyaz Tişört</h4>
+                        <div class="price"><s style="color:#666;">349 TL</s> 249 TL</div>
+                        <a href="tisort.html" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop" alt="İndirimli Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Kapüşonlu Gri Sweatshirt" data-ku="Sweatshirta Gewr a bi Kapûşon" data-ar="سويت شيرت رمادي بقبعة">Kapüşonlu Gri Sweatshirt</h4>
+                        <div class="price"><s style="color:#666;">899 TL</s> 629 TL</div>
+                        <a href="sweatshirt.html" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop" alt="İndirimli Mont">
+                    <div class="product-info">
+                        <h4 data-tr="Siyah Şişme Mont" data-ku="Kurta Reş a Pifkirî" data-ar="معطف أسود منفوش">Siyah Şişme Mont</h4>
+                        <div class="price"><s style="color:#666;">1.899 TL</s> 1.329 TL</div>
+                        <a href="mont.html" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1582966772680-860e372bb558?q=80&w=800&auto=format&fit=crop" alt="İndirimli Çorap">
+                    <div class="product-info">
+                        <h4 data-tr="Desenli Çorap Seti" data-ku="Seta Goreyên Nexşkirî" data-ar="طقم جوارب منقوشة">Desenli Çorap Seti</h4>
+                        <div class="price"><s style="color:#666;">149 TL</s> 99 TL</div>
+                        <a href="corap.html" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ Maisson
+
+    <script src="dil.js"></script>
+</body>
+</html>

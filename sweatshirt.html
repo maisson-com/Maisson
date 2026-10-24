@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweatshirt |Maisson </title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">M<span>aisson</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
+                <li><a href="tisort.html" data-tr="Tişört" data-ku="Kiras" data-ar="تي شيرت">Tişört</a></li>
+                <li><a href="sweatshirt.html" class="active" data-tr="Sweatshirt" data-ku="Sweatshirt" data-ar="سويت شيرت">Sweatshirt</a></li>
+                <li><a href="mont.html" data-tr="Mont & Ceket" data-ku="Kurt û Cakêt" data-ar="معطف وسترة">Mont & Ceket</a></li>
+                <li><a href="corap.html" data-tr="Çorap" data-ku="Gore" data-ar="جوارب">Çorap</a></li>
+                <li><a href="indirimler.html" data-tr="İndirimler" data-ku="Daxistin" data-ar="تخفيضات">İndirimler</a></li>
+            </ul>
+        </nav>
+        <div class="lang-selector">
+            <button onclick="changeLang('tr', this)">TR</button>
+            <button onclick="changeLang('ku', this)">KU</button>
+            <button onclick="changeLang('ar', this)">AR</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1 data-tr="SWEATSHIRT KOLEKSİYONU" data-ku="KOLEKSIYONA SWEATSHIRT" data-ar="مجموعة سويت شيرت">SWEATSHIRT KOLEKSİYONU</h1>
+            <p data-tr="Sıcak ve Konforlu" data-ku="Germ û Rehet" data-ar="دافئ ومريح">Sıcak ve Konforlu</p>
+        </div>
+    </section>
+
+    <section class="shop-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4 data-tr="BEDEN" data-ku="MEZIN" data-ar="المقاس">BEDEN</h4>
+                <label><input type="checkbox"> S</label>
+                <label><input type="checkbox"> M</label>
+                <label><input type="checkbox"> L</label>
+                <label><input type="checkbox"> XL</label>
+                <label><input type="checkbox"> XXL</label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="RENK" data-ku="RENG" data-ar="اللون">RENK</h4>
+                <label><input type="checkbox"> <span data-tr="Siyah" data-ku="Reş" data-ar="أسود">Siyah</span></label>
+                <label><input type="checkbox"> <span data-tr="Beyaz" data-ku="Spî" data-ar="أبيض">Beyaz</span></label>
+                <label><input type="checkbox"> <span data-tr="Gri" data-ku="Gewr" data-ar="رمادي">Gri</span></label>
+                <label><input type="checkbox"> <span data-tr="Lacivert" data-ku="Şîn" data-ar="كحلي">Lacivert</span></label>
+            </div>
+            <div class="filter-group">
+                <h4 data-tr="FİYAT" data-ku="BIHA" data-ar="السعر">FİYAT</h4>
+                <label><input type="checkbox"> 0 - 500 TL</label>
+                <label><input type="checkbox"> 500 - 1000 TL</label>
+                <label><input type="checkbox"> 1000 TL ve Üzeri</label>
+            </div>
+        </aside>
+
+        <div class="product-area">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Kapüşonlu Gri Sweatshirt" data-ku="Sweatshirta Gewr a bi Kapûşon" data-ar="سويت شيرت رمادي بقبعة">Kapüşonlu Gri Sweatshirt</h4>
+                        <div class="price">899 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Oversize Beyaz Sweatshirt" data-ku="Sweatshirta Spî Oversize" data-ar="سويت شيرت أبيض واسع">Oversize Beyaz Sweatshirt</h4>
+                        <div class="price">949 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Siyah Kapüşonlu" data-ku="Kapûşonê Reş" data-ar="سويت شيرت أسود بقبعة">Siyah Kapüşonlu</h4>
+                        <div class="price">849 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Basic Sweatshirt" data-ku="Sweatshirta Basic" data-ar="سويت شيرت أساسي">Basic Sweatshirt</h4>
+                        <div class="price">699 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Açık Gri Sweatshirt" data-ku="Sweatshirta Gewr a Vekirî" data-ar="سويت شيرت رمادي فاتح">Açık Gri Sweatshirt</h4>
+                        <div class="price">799 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop" alt="Sweatshirt">
+                    <div class="product-info">
+                        <h4 data-tr="Fermuarlı Sweatshirt" data-ku="Sweatshirta bi Zîp" data-ar="سويت شيرت بسحاب">Fermuarlı Sweatshirt</h4>
+                        <div class="price">1.099 TL</div>
+                        <a href="#" class="product-link" data-tr="Detayları Gör" data-ku="Hûragahiyan Bibîne" data-ar="عرض التفاصيل">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+       <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="dil.js"></script>
+</body>
+</html>

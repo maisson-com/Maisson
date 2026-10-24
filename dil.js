@@ -1,0 +1,76 @@
+// ============================================
+// FIREBASE BAĞLANTISI
+// ============================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, push, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB_QgwlRfonAj3PyA3QWEeHZ0qINi9I8Cw",
+  authDomain: "maisson-fb7ae.firebaseapp.com",
+  databaseURL: "https://maisson-fb7ae-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "maisson-fb7ae",
+  storageBucket: "maisson-fb7ae.firebasestorage.app",
+  messagingSenderId: "1041887335858",
+  appId: "1:1041887335858:web:92f88a256991e19d85c0ab"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// HTML dosyalarından erişebilmek için global yapıyoruz
+window.firebaseDB = database;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseOnValue = onValue;
+window.firebasePush = push;
+window.firebaseRemove = remove;
+
+// ============================================
+// DİL + TEMA SİSTEMİ
+// ============================================
+function changeLang(lang, btn) {
+    if (btn) {
+        document.querySelectorAll('.lang-selector button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+    localStorage.setItem('maissonLang', lang);
+    applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    if (lang === 'ar') document.body.classList.add('rtl');
+    else document.body.classList.remove('rtl');
+    
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.getElementById('themeIcon');
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode'); localStorage.setItem('maissonTheme', 'dark'); if (icon) icon.textContent = '🌙';
+    } else {
+        body.classList.add('light-mode'); localStorage.setItem('maissonTheme', 'light'); if (icon) icon.textContent = '☀️';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const savedLang = localStorage.getItem('maissonLang') || 'tr';
+    applyLanguage(savedLang);
+    document.querySelectorAll('.lang-selector button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.trim().toLowerCase() === savedLang) btn.classList.add('active');
+    });
+    
+    const savedTheme = localStorage.getItem('maissonTheme') || 'dark';
+    const icon = document.getElementById('themeIcon');
+    if (savedTheme === 'light') { document.body.classList.add('light-mode'); if (icon) icon.textContent = '☀️'; }
+    else { document.body.classList.remove('light-mode'); if (icon) icon.textContent = '🌙'; }
+});
+
+// Global fonksiyonlar
+window.changeLang = changeLang;
+window.toggleTheme = toggleTheme;

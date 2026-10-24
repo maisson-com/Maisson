@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISSON | Yönetici Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body { padding-top: 100px; }
+        .admin-layout { display: flex; min-height: calc(100vh - 100px); }
+        .admin-sidebar { width: 260px; background-color: #111; border-right: 1px solid var(--border-color); padding: 30px 0; flex-shrink: 0; }
+        .admin-sidebar h3 { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 3px; padding: 0 25px 15px 25px; border-bottom: 1px solid var(--border-color); margin-bottom: 15px; }
+        .admin-menu { list-style: none; }
+        .admin-menu li a { display: block; padding: 13px 25px; color: var(--muted-text); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; border-left: 3px solid transparent; transition: all 0.3s; cursor: pointer; }
+        .admin-menu li a:hover { color: var(--light-text); background-color: rgba(201, 169, 110, 0.05); }
+        .admin-menu li a.active { color: var(--gold); border-left: 3px solid var(--gold); background-color: rgba(201, 169, 110, 0.08); }
+        .admin-content { flex-grow: 1; padding: 40px 50px; max-width: 100%; overflow-x: auto; }
+        .admin-page-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--light-text); letter-spacing: 3px; margin-bottom: 10px; }
+        .admin-form { background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; margin-bottom: 40px; }
+        .admin-form h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--muted-text); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 15px; background-color: #0d0d0d; border: 1px solid var(--border-color); color: var(--light-text); font-family: 'Montserrat', sans-serif; }
+        .image-upload-box { border: 2px dashed var(--border-color); padding: 30px; text-align: center; cursor: pointer; background-color: #0a0a0a; border-radius: 6px; }
+        .image-upload-box input[type="file"] { display: none; }
+        .image-upload-box label { cursor: pointer; display: block; color: var(--muted-text); }
+        .image-preview-gallery { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .preview-thumb { width: 80px; height: 80px; object-fit: cover; border: 1px solid var(--border-color); border-radius: 4px; }
+        .stock-area { background-color: #0a0a0a; border: 1px dashed var(--border-color); padding: 20px; margin-bottom: 20px; }
+        .stock-row { display: grid; grid-template-columns: 1fr 2fr auto; gap: 15px; margin-bottom: 10px; align-items: center; }
+        .stock-row input { padding: 10px; background-color: #0d0d0d; border: 1px solid var(--border-color); color: var(--light-text); }
+        .btn-small { background-color: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 8px 15px; cursor: pointer; }
+        .btn-primary { background-color: var(--gold); color: var(--dark-bg); border: none; padding: 12px 30px; font-weight: 600; cursor: pointer; }
+        .btn-danger { background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; padding: 8px 16px; cursor: pointer; }
+        .admin-tab { display: none; }
+        .admin-tab.active { display: block; }
+        @media (max-width: 900px) { .admin-layout { flex-direction: column; } .admin-sidebar { width: 100%; padding: 15px 0; } .admin-menu { display: flex; flex-wrap: wrap; } .admin-menu li a { padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; } .admin-content { padding: 20px; } .form-row { grid-template-columns: 1fr; } .stock-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="admin.html" class="active">🔧 Yönetici Paneli</a></li>
+                    <!-- Admin Modu URL'si Düzeltildi -->
+                    <li><a href="index.html?admin=1">👁️ Siteyi Gör</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="lang-selector">
+                <button class="active" onclick="changeLang('tr', this)">TR</button>
+                <button onclick="changeLang('en', this)">EN</button>
+                <button onclick="changeLang('ar', this)">AR</button>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
+        </div>
+    </header>
+
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h3>YÖNETİM PANELİ</h3>
+            <ul class="admin-menu">
+                <li><a class="active" onclick="showTab('urun-ekle', this)">🛍️ Ürün Ekle</a></li>
+                <li><a onclick="showTab('koleksiyon-ekle', this)">➕ Koleksiyon Ekle</a></li>
+            </ul>
+        </aside>
+        <main class="admin-content">
+            <!-- ÜRÜN EKLE -->
+            <div id="tab-urun-ekle" class="admin-tab active">
+                <h2 class="admin-page-title">YENİ ÜRÜN EKLE</h2>
+                <form class="admin-form" onsubmit="addProduct(event)">
+                    <h3>ÜRÜN BİLGİLERİ</h3>
+                    <div class="form-row">
+                        <div class="form-group"><label>Ürün Adı *</label><input type="text" id="productName" required></div>
+                        <div class="form-group"><label>Fiyat (TL) *</label><input type="number" id="productPrice" required></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori *</label>
+                        <select id="productCategory" required><option value="">Önce Koleksiyon Ekleyin</option></select>
+                    </div>
+                    <div class="stock-area">
+                        <h4>📦 BEDEN ve STOK BİLGİLERİ</h4>
+                        <div id="stockRowsContainer">
+                            <div class="stock-row"><input type="text" class="stock-size" placeholder="Beden" value="S"><input type="number" class="stock-qty" value="0"><button type="button" class="btn-danger" onclick="this.parentElement.remove()">✕</button></div>
+                            <div class="stock-row"><input type="text" class="stock-size" placeholder="Beden" value="M"><input type="number" class="stock-qty" value="0"><button type="button" class="btn-danger" onclick="this.parentElement.remove()">✕</button></div>
+                        </div>
+                        <button type="button" class="btn-small" onclick="addStockRow()" style="margin-top:10px;">+ Beden Ekle</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Ürün Görselleri (Çoklu Seçim)</label>
+                        <div class="image-upload-box">
+                            <input type="file" id="productImageFile" accept="image/*" multiple>
+                            <label for="productImageFile"><span>📁</span>Görselleri Seçmek İçin Tıklayın</label>
+                        </div>
+                        <div class="image-preview-gallery" id="productPreview"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">✓ Ürünü Firebase'e Kaydet</button>
+                </form>
+            </div>
+
+            <!-- KOLEKSİYON EKLE -->
+            <div id="tab-koleksiyon-ekle" class="admin-tab">
+                <h2 class="admin-page-title">YENİ KOLEKSİYON EKLE</h2>
+                <form class="admin-form" onsubmit="addCollection(event)">
+                    <h3>KOLEKSİYON BİLGİLERİ</h3>
+                    <div class="form-group">
+                        <label>Kategori Tipi *</label>
+                        <select id="collectionType" required>
+                            <option value="">Seçiniz</option>
+                            <option value="tisort">👕 Tişört</option>
+                            <option value="sweatshirt">🧥 Sweatshirt</option>
+                            <option value="mont">🧥 Mont & Ceket</option>
+                            <option value="pantolon">👖 Pantolon</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Koleksiyon Adı *</label><input type="text" id="collectionName" placeholder="Örn: Basic Sweatshirt"></div>
+                    <div class="form-group">
+                        <label>Koleksiyon Görseli</label>
+                        <div class="image-upload-box">
+                            <input type="file" id="collectionImageFile" accept="image/*">
+                            <label for="collectionImageFile"><span>📁</span>Görsel Seçmek İçin Tıklayın</label>
+                        </div>
+                        <div class="image-preview-gallery" id="collectionPreview"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">✓ Koleksiyonu Firebase'e Kaydet</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="dil.js"></script>
+    <script type="module">
+        const db = window.firebaseDB;
+        const dbRef = window.firebaseRef;
+        const dbSet = window.firebaseSet;
+        const dbOnValue = window.firebaseOnValue;
+        const dbPush = window.firebasePush;
+
+        let productImagesArray = []; 
+        let collectionImageData = '';
+
+        function showTab(tabName, link) {
+            document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.admin-menu a').forEach(a => a.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            link.classList.add('active');
+            if (tabName === 'urun-ekle') updateProductCategoryDropdown();
+        }
+        window.showTab = showTab;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProductCategoryDropdown();
+            setupCollectionImage();
+            setupProductImages();
+        });
+
+        function updateProductCategoryDropdown() {
+            const select = document.getElementById('productCategory');
+            if(!db) return;
+            const collectionsRef = dbRef(db, 'collections');
+            dbOnValue(collectionsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (!data) { select.innerHTML = '<option value="">Önce Koleksiyon Ekleyin</option>'; return; }
+                const collections = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                select.innerHTML = '<option value="">Seçiniz</option>' + collections.map(c => `<option value="${c.type}">${c.name}</option>`).join('');
+            });
+        }
+
+        function compressImage(file, maxWidth, maxHeight, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    let width = img.width, height = img.height;
+                    if (width > height) { if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; } }
+                    else { if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; } }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width; canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    callback(canvas.toDataURL('image/jpeg', 0.7));
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setupCollectionImage() {
+            const fileInput = document.getElementById('collectionImageFile');
+            const preview = document.getElementById('collectionPreview');
+            fileInput.addEventListener('change', function() {
+                const file = this.files[0]; if (!file) return;
+                compressImage(file, 600, 600, function(compressedBase64) {
+                    collectionImageData = compressedBase64;
+                    preview.innerHTML = `<img src="${collectionImageData}" class="preview-thumb">`;
+                });
+            });
+        }
+
+        function setupProductImages() {
+            const fileInput = document.getElementById('productImageFile');
+            const preview = document.getElementById('productPreview');
+            fileInput.addEventListener('change', function() {
+                productImagesArray = []; preview.innerHTML = '';
+                const files = this.files;
+                if (files.length === 0) return;
+                Array.from(files).forEach(file => {
+                    compressImage(file, 800, 800, function(compressedBase64) {
+                        productImagesArray.push(compressedBase64);
+                        const img = document.createElement('img');
+                        img.src = compressedBase64;
+                        img.className = 'preview-thumb';
+                        preview.appendChild(img);
+                    });
+                });
+            });
+        }
+
+        function addStockRow() {
+            const container = document.getElementById('stockRowsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'stock-row';
+            newRow.innerHTML = `<input type="text" class="stock-size" placeholder="Beden"><input type="number" class="stock-qty" value="0"><button type="button" class="btn-danger" onclick="this.parentElement.remove()">✕</button>`;
+            container.appendChild(newRow);
+        }
+        window.addStockRow = addStockRow;
+
+        function addCollection(event) {
+            event.preventDefault();
+            const type = document.getElementById('collectionType').value;
+            const name = document.getElementById('collectionName').value.trim();
+            if (!type || !name) { alert('Lütfen alanları doldurun!'); return; }
+            const image = collectionImageData || 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800';
+            if (db) {
+                const collectionsRef = dbRef(db, 'collections');
+                const newRef = dbPush(collectionsRef);
+                dbSet(newRef, { name: name.toUpperCase(), type: type, image: image })
+                .then(() => {
+                    alert('✅ Koleksiyon Firebase\'e kaydedildi!');
+                    event.target.reset();
+                    collectionImageData = '';
+                    document.getElementById('collectionPreview').innerHTML = '';
+                }).catch((error) => alert('Hata: ' + error.message));
+            }
+        }
+        window.addCollection = addCollection;
+
+        function addProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('productName').value.trim();
+            const price = parseInt(document.getElementById('productPrice').value);
+            const category = document.getElementById('productCategory').value;
+            if (!name || !price || !category) { alert("Lütfen alanları doldurun!"); return; }
+            const stockRows = document.querySelectorAll('#stockRowsContainer .stock-row');
+            const stock = {};
+            stockRows.forEach(row => {
+                const size = row.querySelector('.stock-size').value.trim();
+                const qty = parseInt(row.querySelector('.stock-qty').value) || 0;
+                if (size) stock[size] = qty;
+            });
+            const finalImages = productImagesArray.length > 0 ? productImagesArray : ['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800'];
+            if (db) {
+                const productsRef = dbRef(db, 'products');
+                const newRef = dbPush(productsRef);
+                dbSet(newRef, { name: name, price: price, category: category, stock: stock, images: finalImages, image: finalImages[0] })
+                .then(() => {
+                    alert('✅ Ürün Firebase\'e kaydedildi!');
+                    event.target.reset();
+                    productImagesArray = [];
+                    document.getElementById('productPreview').innerHTML = '';
+                }).catch((error) => alert('Hata: ' + error.message));
+            }
+        }
+        window.addProduct = addProduct;
+    </script>
+</body>
+</html>
