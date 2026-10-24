@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kategori | MAISSON</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <header>
         <div class="header-left">
             <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
-                    <li><a href="index.html#categories-section" data-tr="Koleksiyonlar" data-en="Collections" data-ar="المجموعات">Koleksiyonlar</a></li>
-                </ul>
-            </nav>
+            <nav><ul><li><a href="index.html">Ana Sayfa</a></li></ul></nav>
         </div>
         <div class="header-right">
             <div class="lang-selector">
@@ -42,7 +37,6 @@
 
     <script type="module" src="dil.js"></script>
     <script type="module">
-        // Admin Butonu Kontrolü
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === '1') sessionStorage.setItem('maissonAdminMode', 'true');
@@ -68,12 +62,10 @@
                 const data = snapshot.val();
                 const grid = document.getElementById('categoryProducts');
                 if (!data) { grid.innerHTML = '<p>Bu kategoride ürün yok.</p>'; return; }
-                
                 const products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
                 const filtered = products.filter(p => p.category === type);
 
                 if (filtered.length === 0) { grid.innerHTML = '<p style="text-align:center; width:100%;">Bu kategoride ürün yok.</p>'; return; }
-
                 grid.innerHTML = filtered.map(p => {
                     const link = `urun-detay.html?id=${p.id}`;
                     const coverImage = p.images ? p.images[0] : p.image;
