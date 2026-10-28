@@ -74,4 +74,48 @@
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === '1') sessionStorage.setItem('maissonAdminMode', 'true');
-            if (sessionStorage.getItem('maissonAdmin
+            if (sessionStorage.getItem('maissonAdminMode') === 'true') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    const container = document.getElementById('adminBtnContainer');
+                    if (container) container.innerHTML = '<a href="admin.html" class="admin-btn">🔧 <span>Yöneticiye Dön</span></a>';
+                });
+            }
+        })();
+
+        const db = window.firebaseDB;
+        const dbRef = window.firebaseRef;
+        const dbOnValue = window.firebaseOnValue;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type');
+            if (!db) return;
+
+            const productsRef = dbRef(db, 'products');
+            dbOnValue(productsRef, (snapshot) => {
+                const data = snapshot.val();
+                const grid = document.getElementById('categoryProducts');
+                if (!data) { grid.innerHTML = '<p>Bu kategoride ürün yok.</p>'; return; }
+                const products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                const filtered = products.filter(p => p.category === type);
+
+                if (filtered.length === 0) { grid.innerHTML = '<p style="text-align:center; width:100%;">Bu kategoride ürün yok.</p>'; return; }
+                grid.innerHTML = filtered.map(p => {
+                    const link = `urun-detay.html?id=${p.id}`;
+                    const coverImage = p.images ? p.images[0] : p.image;
+                    return `
+                        <div class="product-card" onclick="window.location.href='${link}'" style="cursor:pointer;">
+                            <img src="${coverImage}" alt="${p.name}">
+                            <div class="product-info">
+                                <h4>${p.name}</h4>
+                                <div class="price">${p.price} TL</div>
+                                <a href="${link}" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            });
+        });
+    </script>
+</body>
+</html>
