@@ -34,9 +34,18 @@
         .stock-row input { padding: 10px; background-color: #0d0d0d; border: 1px solid var(--border-color); color: var(--light-text); }
         .btn-small { background-color: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 8px 15px; cursor: pointer; }
         .btn-primary { background-color: var(--gold); color: var(--dark-bg); border: none; padding: 12px 30px; font-weight: 600; cursor: pointer; }
-        .btn-danger { background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; padding: 8px 16px; cursor: pointer; }
+        .btn-danger { background-color: transparent; color: #e74c3c; border: 1px solid #e74c3c; padding: 8px 16px; cursor: pointer; transition: all 0.3s; }
+        .btn-danger:hover { background-color: #e74c3c; color: white; }
         .admin-tab { display: none; }
         .admin-tab.active { display: block; }
+        
+        /* LİSTELEME VE SİLME TABLOLARI */
+        .admin-table { width: 100%; border-collapse: collapse; background-color: var(--card-bg); border: 1px solid var(--border-color); margin-top: 30px; }
+        .admin-table th { text-align: left; padding: 15px; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); background-color: #111; }
+        .admin-table td { padding: 15px; font-size: 0.85rem; color: var(--light-text); border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        .admin-table tr:hover { background-color: rgba(201, 169, 110, 0.03); }
+        .admin-table img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+
         @media (max-width: 900px) { .admin-layout { flex-direction: column; } .admin-sidebar { width: 100%; padding: 15px 0; } .admin-menu { display: flex; flex-wrap: wrap; } .admin-menu li a { padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; } .admin-content { padding: 20px; } .form-row { grid-template-columns: 1fr; } .stock-row { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -62,9 +71,12 @@
             <ul class="admin-menu">
                 <li><a class="active" onclick="showTab('urun-ekle', this)">🛍️ Ürün Ekle</a></li>
                 <li><a onclick="showTab('koleksiyon-ekle', this)">➕ Koleksiyon Ekle</a></li>
+                <li><a onclick="showTab('urun-listesi', this)">📋 Ürünleri Yönet</a></li>
+                <li><a onclick="showTab('koleksiyon-listesi', this)">📁 Koleksiyonları Yönet</a></li>
             </ul>
         </aside>
         <main class="admin-content">
+            <!-- ÜRÜN EKLE -->
             <div id="tab-urun-ekle" class="admin-tab active">
                 <h2 class="admin-page-title">YENİ ÜRÜN EKLE</h2>
                 <form class="admin-form" onsubmit="addProduct(event)">
@@ -97,6 +109,7 @@
                 </form>
             </div>
 
+            <!-- KOLEKSİYON EKLE -->
             <div id="tab-koleksiyon-ekle" class="admin-tab">
                 <h2 class="admin-page-title">YENİ KOLEKSİYON EKLE</h2>
                 <form class="admin-form" onsubmit="addCollection(event)">
@@ -123,6 +136,43 @@
                     <button type="submit" class="btn-primary">✓ Koleksiyonu Firebase'e Kaydet</button>
                 </form>
             </div>
+
+            <!-- ÜRÜNLERİ YÖNET (SİLME) -->
+            <div id="tab-urun-listesi" class="admin-tab">
+                <h2 class="admin-page-title">ÜRÜNLERİ YÖNET</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Görsel</th>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            <th>Kategori</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productListTableBody">
+                        <!-- JavaScript ile doldurulacak -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KOLEKSİYONLARI YÖNET (SİLME) -->
+            <div id="tab-koleksiyon-listesi" class="admin-tab">
+                <h2 class="admin-page-title">KOLEKSİYONLARI YÖNET</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Görsel</th>
+                            <th>Koleksiyon Adı</th>
+                            <th>Kategori Tipi</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="collectionListTableBody">
+                        <!-- JavaScript ile doldurulacak -->
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 
@@ -142,7 +192,10 @@
             document.querySelectorAll('.admin-menu a').forEach(a => a.classList.remove('active'));
             document.getElementById('tab-' + tabName).classList.add('active');
             link.classList.add('active');
+            
             if (tabName === 'urun-ekle') updateProductCategoryDropdown();
+            if (tabName === 'urun-listesi') renderProductList();
+            if (tabName === 'koleksiyon-listesi') renderCollectionList();
         }
         window.showTab = showTab;
 
@@ -150,6 +203,8 @@
             updateProductCategoryDropdown();
             setupCollectionImage();
             setupProductImages();
+            renderProductList();
+            renderCollectionList();
         });
 
         function updateProductCategoryDropdown() {
@@ -238,6 +293,7 @@
                     event.target.reset();
                     collectionImageData = '';
                     document.getElementById('collectionPreview').innerHTML = '';
+                    renderCollectionList();
                 }).catch((error) => alert('Hata: ' + error.message));
             }
         }
@@ -266,10 +322,75 @@
                     event.target.reset();
                     productImagesArray = [];
                     document.getElementById('productPreview').innerHTML = '';
+                    renderProductList();
                 }).catch((error) => alert('Hata: ' + error.message));
             }
         }
         window.addProduct = addProduct;
+
+        // --- SİLME VE LİSTELEME FONKSİYONLARI ---
+
+        function renderProductList() {
+            const tbody = document.getElementById('productListTableBody');
+            if (!db) return;
+            const productsRef = dbRef(db, 'products');
+            dbOnValue(productsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (!data) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Henüz ürün yok.</td></tr>'; return; }
+                const products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                tbody.innerHTML = products.map(p => `
+                    <tr>
+                        <td><img src="${p.image}" alt="${p.name}"></td>
+                        <td>${p.name}</td>
+                        <td>${p.price} TL</td>
+                        <td>${p.category.toUpperCase()}</td>
+                        <td><button class="btn-danger" onclick="deleteProduct('${p.id}')">🗑️ Sil</button></td>
+                    </tr>
+                `).join('');
+            });
+        }
+
+        function renderCollectionList() {
+            const tbody = document.getElementById('collectionListTableBody');
+            if (!db) return;
+            const collectionsRef = dbRef(db, 'collections');
+            dbOnValue(collectionsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (!data) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Henüz koleksiyon yok.</td></tr>'; return; }
+                const collections = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                tbody.innerHTML = collections.map(c => `
+                    <tr>
+                        <td><img src="${c.image}" alt="${c.name}"></td>
+                        <td>${c.name}</td>
+                        <td>${c.type.toUpperCase()}</td>
+                        <td><button class="btn-danger" onclick="deleteCollection('${c.id}')">🗑️ Sil</button></td>
+                    </tr>
+                `).join('');
+            });
+        }
+
+        window.deleteProduct = function(id) {
+            if (!confirm('Bu ürünü silmek istediğinizden emin misiniz?')) return;
+            const productRef = dbRef(db, 'products/' + id);
+            // Firebase'den silme işlemi için remove fonksiyonu gerekli, import etmiştik ama window'a eklememiştik.
+            // Aslında Firebase'den silmek için 'remove' kullanmalıyız. 
+            // Hemen koda import ekleyelim veya burada halledelim.
+            import("https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js").then(module => {
+                module.remove(productRef).then(() => {
+                    alert('✅ Ürün silindi!');
+                }).catch(err => alert('Hata: ' + err.message));
+            });
+        };
+
+        window.deleteCollection = function(id) {
+            if (!confirm('Bu koleksiyonu silmek istediğinizden emin misiniz?')) return;
+            const collectionRef = dbRef(db, 'collections/' + id);
+            import("https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js").then(module => {
+                module.remove(collectionRef).then(() => {
+                    alert('✅ Koleksiyon silindi!');
+                }).catch(err => alert('Hata: ' + err.message));
+            });
+        };
     </script>
 </body>
 </html>
