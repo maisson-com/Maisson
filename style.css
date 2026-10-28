@@ -6,15 +6,25 @@ body { font-family: 'Montserrat', sans-serif; background-color: #0d0d0d; color: 
 :root { --gold: #c9a96e; --dark-bg: #0d0d0d; --card-bg: #161616; --light-text: #f5f5f5; --muted-text: #888888; --border-color: #2a2a2a; --header-bg: rgba(13, 13, 13, 0.95); }
 
 /* AYDINLIK MOD */
-body.light-mode { --dark-bg: #f5f5f5; --card-bg: #ffffff; --light-text: #1a1a1a; --muted-text: #666666; --border-color: #e0e0e0; --header-bg: rgba(245, 245, 245, 0.95); background-color: #f5f5f5; color: #1a1a1a; }
+body.light-mode { --dark-bg: #f5f5f5; --card-bg: #ffffff; --light-text: #1a1a1a; --muted-text: #666666; --border-color: #e0e0e0; --header-bg: rgba(255, 255, 255, 0.95); background-color: #f5f5f5; color: #1a1a1a; }
 body.light-mode nav a, body.light-mode .theme-toggle, body.light-mode .product-info h4 { color: #1a1a1a; }
 body.light-mode .section-title { color: #1a1a1a; }
 body.light-mode footer { background-color: #ffffff; color: #666; }
 body.light-mode footer a { color: #666; }
 body.light-mode .category-card, body.light-mode .product-card { background-color: #ffffff; }
-body.light-mode .hero { background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.85)), url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
-body.light-mode .page-hero { background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.85)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
-body.light-mode .hero h1, body.light-mode .page-hero h1 { color: #1a1a1a; }
+
+/* HERO AYDINLIK MOD - VİDEOYU SOLDURMAYAN EFEKT */
+body.light-mode .hero-video-overlay { 
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)); /* Çok hafif bir beyazlık */
+}
+body.light-mode .hero h1, body.light-mode .page-hero h1, body.light-mode .hero-video h1 { 
+    color: #1a1a1a; 
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8); /* Beyaz temada yazının okunması için hafif gölge */
+}
+body.light-mode .hero p, body.light-mode .page-hero p, body.light-mode .hero-video p { 
+    color: #1a1a1a; 
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+}
 
 /* ARAPÇA RTL */
 body.rtl { direction: rtl; text-align: right; font-family: 'Tajawal', 'Cairo', sans-serif; }
@@ -33,9 +43,7 @@ body.rtl .section-subtitle, body.rtl .category-info p, body.rtl .product-link, b
 header { position: fixed; top: 0; width: 100%; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; border-bottom: 1px solid rgba(201, 169, 110, 0.15); backdrop-filter: blur(10px); gap: 20px; transition: background-color 0.4s ease; }
 .header-left { display: flex; align-items: center; gap: 30px; flex-shrink: 0; }
 
-/* ============================================
-   LOGO (TAMAMEN ŞEFFAF VE TEMİZ)
-   ============================================ */
+/* LOGO TAMAMEN ŞEFFAF */
 .logo { 
     display: flex; 
     align-items: center; 
@@ -83,14 +91,13 @@ body.light-mode .trendyol-search-bar input { color: #333; }
 .admin-btn { display: flex; align-items: center; gap: 6px; background-color: transparent; border: 1px solid var(--border-color); color: var(--muted-text); text-decoration: none; padding: 8px 14px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; white-space: nowrap; }
 .admin-btn:hover { border-color: var(--gold); color: var(--gold); background-color: rgba(201, 169, 110, 0.08); }
 
-/* HERO */
+/* HERO (Siyah Tema İçin) */
 .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; background-position: center 40%; margin-top: -100px; }
 .hero-video { position: relative; overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: -100px; }
 .hero-video-bg { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0; object-fit: cover; }
 .hero-video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)); z-index: 1; }
 .hero-video .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
-body.light-mode .hero-video-overlay { background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8)); }
-body.light-mode .hero-video h1 { color: #1a1a1a; }
+
 .page-hero { height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
 .hero-content { max-width: 800px; padding: 20px; animation: fadeIn 1.5s ease-out; }
 .hero h1, .hero-video h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; letter-spacing: 8px; margin-bottom: 15px; color: var(--light-text); font-weight: 400; }
