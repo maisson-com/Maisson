@@ -38,14 +38,11 @@
         .btn-danger:hover { background-color: #e74c3c; color: white; }
         .admin-tab { display: none; }
         .admin-tab.active { display: block; }
-        
-        /* LİSTELEME VE SİLME TABLOLARI */
         .admin-table { width: 100%; border-collapse: collapse; background-color: var(--card-bg); border: 1px solid var(--border-color); margin-top: 30px; }
         .admin-table th { text-align: left; padding: 15px; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); background-color: #111; }
         .admin-table td { padding: 15px; font-size: 0.85rem; color: var(--light-text); border-bottom: 1px solid var(--border-color); vertical-align: middle; }
         .admin-table tr:hover { background-color: rgba(201, 169, 110, 0.03); }
         .admin-table img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
-
         @media (max-width: 900px) { .admin-layout { flex-direction: column; } .admin-sidebar { width: 100%; padding: 15px 0; } .admin-menu { display: flex; flex-wrap: wrap; } .admin-menu li a { padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; } .admin-content { padding: 20px; } .form-row { grid-template-columns: 1fr; } .stock-row { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -116,14 +113,22 @@
                     <h3>KOLEKSİYON BİLGİLERİ</h3>
                     <div class="form-group">
                         <label>Kategori Tipi *</label>
-                        <select id="collectionType" required>
+                        <select id="collectionType" required onchange="toggleCustomCategoryInput(this)">
                             <option value="">Seçiniz</option>
                             <option value="tisort">👕 Tişört</option>
                             <option value="sweatshirt">🧥 Sweatshirt</option>
                             <option value="mont">🧥 Mont & Ceket</option>
                             <option value="pantolon">👖 Pantolon</option>
+                            <option value="custom">➕ Yeni Kategori Yaz...</option> <!-- YENİ SEÇENEK -->
                         </select>
                     </div>
+                    
+                    <!-- ELLE KATEGORİ YAZMA ALANI (Başlangıçta gizli) -->
+                    <div class="form-group" id="customCategoryGroup" style="display: none;">
+                        <label>Yeni Kategori Adı (İngilizce veya Türkçe) *</label>
+                        <input type="text" id="customCategoryName" placeholder="Örn: Bere, Atkı, Takı...">
+                    </div>
+
                     <div class="form-group"><label>Koleksiyon Adı *</label><input type="text" id="collectionName" placeholder="Örn: Basic Sweatshirt"></div>
                     <div class="form-group">
                         <label>Koleksiyon Görseli</label>
@@ -141,18 +146,8 @@
             <div id="tab-urun-listesi" class="admin-tab">
                 <h2 class="admin-page-title">ÜRÜNLERİ YÖNET</h2>
                 <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Görsel</th>
-                            <th>Ürün Adı</th>
-                            <th>Fiyat</th>
-                            <th>Kategori</th>
-                            <th>İşlem</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productListTableBody">
-                        <!-- JavaScript ile doldurulacak -->
-                    </tbody>
+                    <thead><tr><th>Görsel</th><th>Ürün Adı</th><th>Fiyat</th><th>Kategori</th><th>İşlem</th></tr></thead>
+                    <tbody id="productListTableBody"></tbody>
                 </table>
             </div>
 
@@ -160,17 +155,8 @@
             <div id="tab-koleksiyon-listesi" class="admin-tab">
                 <h2 class="admin-page-title">KOLEKSİYONLARI YÖNET</h2>
                 <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Görsel</th>
-                            <th>Koleksiyon Adı</th>
-                            <th>Kategori Tipi</th>
-                            <th>İşlem</th>
-                        </tr>
-                    </thead>
-                    <tbody id="collectionListTableBody">
-                        <!-- JavaScript ile doldurulacak -->
-                    </tbody>
+                    <thead><tr><th>Görsel</th><th>Koleksiyon Adı</th><th>Kategori Tipi</th><th>İşlem</th></tr></thead>
+                    <tbody id="collectionListTableBody"></tbody>
                 </table>
             </div>
         </main>
@@ -198,6 +184,18 @@
             if (tabName === 'koleksiyon-listesi') renderCollectionList();
         }
         window.showTab = showTab;
+
+        // ELLE KATEGORİ YAZMA ALANINI AÇ/KAPAT
+        window.toggleCustomCategoryInput = function(select) {
+            const customGroup = document.getElementById('customCategoryGroup');
+            if (select.value === 'custom') {
+                customGroup.style.display = 'block';
+                document.getElementById('customCategoryName').required = true;
+            } else {
+                customGroup.style.display = 'none';
+                document.getElementById('customCategoryName').required = false;
+            }
+        };
 
         document.addEventListener('DOMContentLoaded', function() {
             updateProductCategoryDropdown();
@@ -280,9 +278,17 @@
 
         function addCollection(event) {
             event.preventDefault();
-            const type = document.getElementById('collectionType').value;
+            
+            let type = document.getElementById('collectionType').value;
+            // Eğer "custom" seçildiyse, girilen metni al
+            if (type === 'custom') {
+                type = document.getElementById('customCategoryName').value.trim().toLowerCase();
+                if (!type) { alert('Lütfen yeni kategori adını girin!'); return; }
+            }
+
             const name = document.getElementById('collectionName').value.trim();
             if (!type || !name) { alert('Lütfen alanları doldurun!'); return; }
+            
             const image = collectionImageData || 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800';
             if (db) {
                 const collectionsRef = dbRef(db, 'collections');
@@ -293,6 +299,7 @@
                     event.target.reset();
                     collectionImageData = '';
                     document.getElementById('collectionPreview').innerHTML = '';
+                    document.getElementById('customCategoryGroup').style.display = 'none';
                     renderCollectionList();
                 }).catch((error) => alert('Hata: ' + error.message));
             }
@@ -327,8 +334,6 @@
             }
         }
         window.addProduct = addProduct;
-
-        // --- SİLME VE LİSTELEME FONKSİYONLARI ---
 
         function renderProductList() {
             const tbody = document.getElementById('productListTableBody');
@@ -372,9 +377,6 @@
         window.deleteProduct = function(id) {
             if (!confirm('Bu ürünü silmek istediğinizden emin misiniz?')) return;
             const productRef = dbRef(db, 'products/' + id);
-            // Firebase'den silme işlemi için remove fonksiyonu gerekli, import etmiştik ama window'a eklememiştik.
-            // Aslında Firebase'den silmek için 'remove' kullanmalıyız. 
-            // Hemen koda import ekleyelim veya burada halledelim.
             import("https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js").then(module => {
                 module.remove(productRef).then(() => {
                     alert('✅ Ürün silindi!');
