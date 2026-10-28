@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hakkımızda | MAISSON</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .about-hero {
@@ -37,154 +37,86 @@
             margin-bottom: 20px;
             text-align: justify;
         }
-        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
-        .value-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .value-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .value-card .value-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-        .value-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 15px; }
-        .value-card p { font-size: 0.85rem; color: var(--muted-text); line-height: 1.8; text-align: center; }
-        .stats-section { background-color: #111; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 60px 50px; }
-        .stats-grid-about { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; text-align: center; }
-        .stat-item .stat-number { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
-        .stat-item .stat-text { font-size: 0.8rem; color: var(--muted-text); letter-spacing: 2px; text-transform: uppercase; }
         body.rtl .about-section p { text-align: right; }
         @media (max-width: 900px) {
             .about-content { padding: 60px 20px; }
             .about-section h2 { font-size: 1.5rem; }
-            .stats-section { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
-
     <header>
         <div class="header-left">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Maisson Logo">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
             <nav>
                 <ul>
-                    <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
-                    <li><a href="hakkimizda.html" class="active" data-tr="Hakkımızda" data-ku="Derbarê Me" data-ar="من نحن">Hakkımızda</a></li>
-                    <li><a href="kvkk.html" data-tr="KVKK & Çerezler" data-ku="KVKK & Çerez" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html" class="active" data-tr="Hakkımızda" data-en="About Us" data-ar="من نحن">Hakkımızda</a></li>
+                    <li><a href="kvkk.html" data-tr="KVKK & Çerezler" data-en="KVKK & Cookies" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
                 </ul>
             </nav>
         </div>
-
-        <div class="search-center">
-            <div class="trendyol-search-bar">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="Ürün, kategori veya marka ara..." autocomplete="off">
-                <button class="search-clear" onclick="clearSearch()">✕</button>
-            </div>
-        </div>
-
         <div class="header-right">
             <div class="lang-selector">
                 <button class="active" onclick="changeLang('tr', this)">TR</button>
-                <button onclick="changeLang('ku', this)">KU</button>
+                <button onclick="changeLang('en', this)">EN</button>
                 <button onclick="changeLang('ar', this)">AR</button>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()" title="Karanlık/Aydınlık Mod">
-                <span id="themeIcon">🌙</span>
-            </button>
+            <button class="theme-toggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
         </div>
     </header>
 
     <section class="about-hero">
         <div class="hero-content">
-            <h1 data-tr="HAKKIMIZDA" data-ku="DERBARÊ ME" data-ar="من نحن">HAKKIMIZDA</h1>
-            <p data-tr="MAISSON'un Hikayesi" data-ku="Çîroka MAISSON" data-ar="قصة ميسون">MAISSON'un Hikayesi</p>
+            <h1 data-tr="HAKKIMIZDA" data-en="ABOUT US" data-ar="من نحن">HAKKIMIZDA</h1>
+            <p data-tr="Hikâyemiz ve Değerlerimiz" data-en="Our Story and Values" data-ar="قصتنا وقيمنا">Hikâyemiz ve Değerlerimiz</p>
         </div>
     </section>
 
     <section class="about-content">
         <div class="about-section">
-            <h2 data-tr="BİZ KİMİZ?" data-ku="EM KÎ NE?" data-ar="من نحن؟">BİZ KİMİZ?</h2>
-            <p data-tr="MAISSON, modern erkeğin günlük şıklığını ve konforunu bir araya getiren premium bir erkek giyim markasıdır. Kurulduğumuz günden bu yana, sadece kaliteli ürünler sunmayı değil, aynı zamanda bir yaşam tarzı yaratmayı hedefliyoruz." 
-               data-ku="MAISSON, marqeyek cilûberga mêran a premium e ku şika rojane û rehetiya zilamê nûjen tîne cem hev. Ji roja ku hate damezrandin heya niha, em ne tenê berhemên kalîte pêşkêş dikin, lê di heman demê de armanca afirandina şêwazek jiyanê jî dikin."
-               data-ar="ميسون هي علامة تجارية فاخرة للملابس الرجالية تجمع بين الأناقة اليومية والراحة للرجل العصري. منذ يوم تأسيسنا، لم نكتفِ بتقديم منتجات عالية الجودة فحسب، بل سعينا أيضًا إلى خلق أسلوب حياة.">MAISSON, modern erkeğin günlük şıklığını ve konforunu bir araya getiren premium bir erkek giyim markasıdır. Kurulduğumuz günden bu yana, sadece kaliteli ürünler sunmayı değil, aynı zamanda bir yaşam tarzı yaratmayı hedefliyoruz.</p>
-            <p data-tr="Tişört, sweatshirt, mont, çorap ve daha fazlası... Her ürünümüz, en ince detayına kadar özenle tasarlanır ve üretilir. Kullandığımız kumaşlardan dikiş kalitesine, ambalajdan müşteri hizmetlerine kadar her aşamada mükemmelliği hedefliyoruz." 
-               data-ku="Kiras, sweatshirt, kurt, gore û hêj bêtir... Her berhema me, heya hûragahiyek herî hûr bi baldarî tête sêwirandin û hilberandin. Ji qumaşên ku em bikar tînin heya kalîteya dirûnê, ji pakêkirinê heya xizmeta xerîdar, em di her qonaxê de armanca bêkêmasîtiyê dikin."
-               data-ar="تي شيرت، سويت شيرت، معطف، جوارب والمزيد... كل منتج من منتجاتنا مصمم ومُنتج بعناية حتى أدق التفاصيل. من الأقمشة التي نستخدمها إلى جودة الخياطة، ومن التغليف إلى خدمة العملاء، نهدف إلى الكمال في كل مرحلة.">Tişört, sweatshirt, mont, çorap ve daha fazlası... Her ürünümüz, en ince detayına kadar özenle tasarlanır ve üretilir. Kullandığımız kumaşlardan dikiş kalitesine, ambalajdan müşteri hizmetlerine kadar her aşamada mükemmelliği hedefliyoruz.</p>
+            <h2 data-tr="HİKÂYEMİZ VE KURULUŞUMUZ" data-en="OUR STORY AND FOUNDATION" data-ar="قصتنا وتأسيسنا">HİKÂYEMİZ VE KURULUŞUMUZ</h2>
+            <p data-tr="Markamızın temelleri, 2024 yılının Ocak ayında yönetim kurulumuzun aldığı stratejik karar doğrultusunda atılmıştır. Resmi yapılanma ve markalaşma süreçlerimizi ise 2026 yılının Ağustos ayı itibarıyla başlatarak tekstil ve moda sektörüne güçlü bir adım attık." data-en="The foundations of our brand were laid in January 2024 in line with the strategic decision taken by our board of directors. We started our official structuring and branding processes as of August 2026, taking a strong step into the textile and fashion sector." data-ar="تم وضع أسس علامتنا التجارية في يناير ٢٠٢٤ وفقًا للقرار الاستراتيجي الذي اتخذه مجلس إدارتنا. بدأنا عمليات الهيكلة والعلامة التجارية الرسمية لدينا اعتبارًا من أغسطس ٢٠٢٦، مما يمثل خطوة قوية في قطاع النسيج والأزياء.">Markamızın temelleri, 2024 yılının Ocak ayında yönetim kurulumuzun aldığı stratejik karar doğrultusunda atılmıştır. Resmi yapılanma ve markalaşma süreçlerimizi ise 2026 yılının Ağustos ayı itibarıyla başlatarak tekstil ve moda sektörüne güçlü bir adım attık.</p>
         </div>
 
         <div class="about-section">
-            <h2 data-tr="MİSYONUMUZ" data-ku="MÎSYONA ME" data-ar="مهمتنا">MİSYONUMUZ</h2>
-            <p data-tr="Misyonumuz, her erkeğin kendini özel ve şık hissetmesini sağlamak. Kaliteli ürünleri uygun fiyatlarla sunarak, herkesin premium giyim deneyimine erişebilmesini istiyoruz. Müşterilerimizin memnuniyeti bizim için her şeyden önce gelir." 
-               data-ku="Mîsyona me ev e ku em her zilamî bi xwe taybet û şik hîs bike. Bi pêşkêşkirina berhemên kalîte bi bihayên guncaw, em dixwazin ku her kes bigihîje ezmûna cilûberga premium. Razîbûna xerîdarên me ji her tiştî girîngtir e."
-               data-ar="مهمتنا هي جعل كل رجل يشعر بأنه مميز وأنيق. من خلال تقديم منتجات عالية الجودة بأسعار مناسبة، نريد أن يتمكن الجميع من الوصول إلى تجربة الملابس الفاخرة. رضا عملائنا هو الأهم بالنسبة لنا.">Misyonumuz, her erkeğin kendini özel ve şık hissetmesini sağlamak. Kaliteli ürünleri uygun fiyatlarla sunarak, herkesin premium giyim deneyimine erişebilmesini istiyoruz. Müşterilerimizin memnuniyeti bizim için her şeyden önce gelir.</p>
+            <h2 data-tr="KALİTE VE ÜRETİM ANLAYIŞIMIZ" data-en="OUR QUALITY AND PRODUCTION APPROACH" data-ar="نهجنا في الجودة والإنتاج">KALİTE VE ÜRETİM ANLAYIŞIMIZ</h2>
+            <p data-tr="Yola çıkış amacımız, alışılagelmiş kalıpların ötesine geçerek özgün ve güvenilir bir hizmet anlayışını benimsemektir. Bulunduğumuz bölgenin ve kendi üretim tesislerimizin sağladığı güçle, tüm ürünlerimizi MAISSON markası çatısı altında kendi bünyemizde tasarlayıp üretiyoruz. Koleksiyonlarımızda yalnızca insan sağlığına uygun, yüksek standartlara sahip, kaliteli ve güvenli kumaşlar kullanmayı temel ilke kabul ediyoruz." data-en="Our purpose in setting out is to go beyond conventional patterns and adopt a unique and reliable service approach. With the strength of the region we are in and our own production facilities, we design and produce all our products within our body under the MAISSON brand. We accept using only high-standard, quality and safe fabrics suitable for human health in our collections as a basic principle." data-ar="هدفنا في الانطلاق هو تجاوز الأنماط التقليدية وتبني نهج خدمة فريد وموثوق. بقوة المنطقة التي نتواجد فيها ومرافق الإنتاج الخاصة بنا، نصمم وننتج جميع منتجاتنا داخل شركتنا تحت علامة MAISSON التجارية. نعتبر استخدام الأقمشة عالية المعايير والجودة والآمنة والمناسبة لصحة الإنسان في مجموعاتنا مبدأً أساسيًا.">Yola çıkış amacımız, alışılagelmiş kalıpların ötesine geçerek özgün ve güvenilir bir hizmet anlayışını benimsemektir. Bulunduğumuz bölgenin ve kendi üretim tesislerimizin sağladığı güçle, tüm ürünlerimizi MAISSON markası çatısı altında kendi bünyemizde tasarlayıp üretiyoruz. Koleksiyonlarımızda yalnızca insan sağlığına uygun, yüksek standartlara sahip, kaliteli ve güvenli kumaşlar kullanmayı temel ilke kabul ediyoruz.</p>
         </div>
 
         <div class="about-section">
-            <h2 data-tr="VİZYONUMUZ" data-ku="VÎZYONA ME" data-ar="رؤيتنا">VİZYONUMUZ</h2>
-            <p data-tr="Vizyonumuz, Türkiye ve Kuzey Irak başta olmak üzere geniş bir coğrafyada, kaliteli erkek giyim denince akla gelen ilk marka olmak. Sürekli yenilikçi tasarımlar ve müşteri odaklı hizmet anlayışımızla, sektörde öncü olmayı hedefliyoruz." 
-               data-ku="Vîzyona me ev e ku em li Tirkiye û Bakurê Iraqê, û herêmek berfireh, bibin marqeya yekem ku dema cilûberga mêran a kalîte tê bîra mirov. Bi sêwiranên nûjen û nêzîkatiya xizmeta xerîdar-mekirî, em armanc dikin ku di sektorê de pêşeng bin."
-               data-ar="رؤيتنا هي أن نكون العلامة التجارية الأولى التي تخطر على البال عند الحديث عن الملابس الرجالية عالية الجودة، خاصة في تركيا وشمال العراق ومنطقة واسعة. من خلال التصاميم المبتكرة باستمرار وفهمنا للخدمة الذي يركز على العملاء، نهدف إلى أن نكون روادًا في هذا القطاع.">Vizyonumuz, Türkiye ve Kuzey Irak başta olmak üzere geniş bir coğrafyada, kaliteli erkek giyim denince akla gelen ilk marka olmak. Sürekli yenilikçi tasarımlar ve müşteri odaklı hizmet anlayışımızla, sektörde öncü olmayı hedefliyoruz.</p>
-        </div>
-
-        <div class="about-section">
-            <h2 data-tr="DEĞERLERİMİZ" data-ku="NIRXÊN ME" data-ar="قيمنا">DEĞERLERİMİZ</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <span class="value-icon">✨</span>
-                    <h3 data-tr="KALİTE" data-ku="KALÎTE" data-ar="الجودة">KALİTE</h3>
-                    <p data-tr="Her ürünümüz, en yüksek kalite standartlarına uygun olarak üretilir." data-ku="Her berhema me li gorî standardên herî bilind ên kalîteyê tê hilberandin." data-ar="يتم إنتاج كل منتج من منتجاتنا وفقًا لأعلى معايير الجودة.">Her ürünümüz, en yüksek kalite standartlarına uygun olarak üretilir.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🤝</span>
-                    <h3 data-tr="GÜVEN" data-ku="BİWERÎ" data-ar="الثقة">GÜVEN</h3>
-                    <p data-tr="Müşterilerimizle uzun vadeli, güvene dayalı ilişkiler kurarız." data-ku="Em bi xerîdarên xwe re têkiliyên demdirêj û li ser bingeha baweriyê ava dikin." data-ar="نبني علاقات طويلة الأمد قائمة على الثقة مع عملائنا.">Müşterilerimizle uzun vadeli, güvene dayalı ilişkiler kurarız.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">🚀</span>
-                    <h3 data-tr="YENİLİKÇİLİK" data-ku="NÛJENÎ" data-ar="الابتكار">YENİLİKÇİLİK</h3>
-                    <p data-tr="Sürekli gelişen trendleri takip eder, yenilikçi tasarımlar sunarız." data-ku="Em trendên ku berdewam pêşve diçin bişopînin û sêwiranên nûjen pêşkêş dikin." data-ar="نتبع الاتجاهات المتطورة باستمرار ونقدم تصاميم مبتكرة.">Sürekli gelişen trendleri takip eder, yenilikçi tasarımlar sunarız.</p>
-                </div>
-                <div class="value-card">
-                    <span class="value-icon">💎</span>
-                    <h3 data-tr="ŞIKLIK" data-ku="ŞIKAYÎ" data-ar="الأناقة">ŞIKLIK</h3>
-                    <p data-tr="Her parça, modern erkeğin tarzını yansıtacak şekilde tasarlanır." data-ku="Her perçe tête sêwirandin ku şêwaza zilamê nûjen nîşan bide." data-ar="تم تصميم كل قطعة لتعكس أسلوب الرجل العصري.">Her parça, modern erkeğin tarzını yansıtacak şekilde tasarlanır.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-section">
-        <div class="stats-grid-about">
-            <div class="stat-item"><div class="stat-number">10K+</div><div class="stat-text" data-tr="Mutlu Müşteri" data-ku="Xerîdarên Kêfxweş" data-ar="عميل سعيد">Mutlu Müşteri</div></div>
-            <div class="stat-item"><div class="stat-number">50+</div><div class="stat-text" data-tr="Ürün Çeşidi" data-ku="Cûreyên Berheman" data-ar="نوع المنتج">Ürün Çeşidi</div></div>
-            <div class="stat-item"><div class="stat-number">3</div><div class="stat-text" data-tr="Ülke" data-ku="Welat" data-ar="دولة">Ülke</div></div>
-            <div class="stat-item"><div class="stat-number">%99</div><div class="stat-text" data-tr="Memnuniyet" data-ku="Razîbûn" data-ar="الرضا">Memnuniyet</div></div>
-        </div>
-    </section>
-
-    <section class="about-content">
-        <div class="about-section">
-            <h2 data-tr="İLETİŞİM" data-ku="TÊKILI" data-ar="الاتصال">İLETİŞİM</h2>
-            <p data-tr="Bize her konuda ulaşabilirsiniz. Sorularınız, önerileriniz veya iş birliği teklifleriniz için aşağıdaki kanallardan iletişime geçebilirsiniz:" data-ku="Hûn dikarin di her mijarê de bi me re têkilî daynin. Ji bo pirs, pêşniyar an pêşniyarên hevkariyê, hûn dikarin bi kanalên jêrîn re têkilî daynin:" data-ar="يمكنك التواصل معنا في أي موضوع. للأسئلة أو الاقتراحات أو عروض التعاون، يمكنك التواصل من خلال القنوات التالية:">Bize her konuda ulaşabilirsiniz. Sorularınız, önerileriniz veya iş birliği teklifleriniz için aşağıdaki kanallardan iletişime geçebilirsiniz:</p>
-            <div style="margin-top: 30px;">
-                <p style="color:var(--gold); font-size:1rem; margin-bottom:15px;">📧 <strong data-tr="E-posta:" data-ku="E-name:" data-ar="البريد الإلكتروني:">E-posta:</strong> <span style="color:var(--light-text);">info@maisson.com</span></p>
-                <p style="color:var(--gold); font-size:1rem; margin-bottom:15px;">📞 <strong data-tr="Telefon:" data-ku="Telefon:" data-ar="الهاتف:">Telefon:</strong> <span style="color:var(--light-text);">+90 (212) 000 00 00</span></p>
-                <p style="color:var(--gold); font-size:1rem;">📍 <strong data-tr="Adres:" data-ku="Navnîşan:" data-ar="العنوان:">Adres:</strong> <span style="color:var(--light-text);" data-tr="İstanbul, Türkiye" data-ku="Stenbol, Tirkiye" data-ar="اسطنبول، تركيا">İstanbul, Türkiye</span></p>
-            </div>
+            <h2 data-tr="VİZYONUMUZ VE DEĞERLERİMİZ" data-en="OUR VISION AND VALUES" data-ar="رؤيتنا وقيمنا">VİZYONUMUZ VE DEĞERLERİMİZ</h2>
+            <p data-tr="Siz değerli müşterilerimize en iyisini sunma tutkusuyla, 'Özenle Dokundu, Kaliteyle Sunuldu' sloganını hizmet anlayışımızın merkezine yerleştirdik. Tarafımıza iletilen her türlü talep, geri bildirim ve beklenti bizler için son derece kıymetli ve yol göstericidir. Müşteri memnuniyetini her zaman en üst seviyede tutarak, kaliteli ve güvenilir ürünleri sizlerle buluşturmaktan büyük mutluluk duyuyoruz." data-en="With the passion to offer the best to you, our valued customers, we have placed the slogan 'Woven with Care, Presented with Quality' at the center of our service approach. All kinds of requests, feedback and expectations conveyed to us are extremely valuable and guiding for us. We are very happy to bring quality and reliable products together with you by always keeping customer satisfaction at the highest level." data-ar="بشغف تقديم الأفضل لكم، عملائنا الكرام، وضعنا شعار 'منسوج بعناية، ومقدم بجودة عالية' في مركز نهج خدمتنا. جميع الطلبات والملاحظات والتوقعات التي تصل إلينا ذات قيمة كبيرة وتوجهنا. يسعدنا جدًا تقديم منتجات عالية الجودة وموثوقة لكم من خلال الحفاظ على رضا العملاء دائمًا في أعلى مستوى.">Siz değerli müşterilerimize en iyisini sunma tutkusuyla, 'Özenle Dokundu, Kaliteyle Sunuldu' sloganını hizmet anlayışımızın merkezine yerleştirdik. Tarafımıza iletilen her türlü talep, geri bildirim ve beklenti bizler için son derece kıymetli ve yol göstericidir. Müşteri memnuniyetini her zaman en üst seviyede tutarak, kaliteli ve güvenilir ürünleri sizlerle buluşturmaktan büyük mutluluk duyuyoruz.</p>
         </div>
     </section>
 
     <footer>
-        <div class="footer-links">
-            <a href="hakkimizda.html" data-tr="Hakkımızda" data-ku="Derbarê Me" data-ar="من نحن">Hakkımızda</a>
-            <a href="kvkk.html" data-tr="KVKK & Çerezler" data-ku="KVKK & Çerez" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a>
+        <!-- FOOTER BURAYA GELECEK (Tüm sayfalarda aynı) -->
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">MAISSON</a>
+                <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-en="© 2024 Maisson. All rights reserved." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
+                <p data-tr="Özenle Dokundu, Kaliteyle Sunuldu" data-en="Woven with Care, Presented with Quality" data-ar="منسوج بعناية، ومقدم بجودة عالية.">Özenle Dokundu, Kaliteyle Sunuldu</p>
+            </div>
+            <div class="footer-contact">
+                <h4 data-tr="İLETİŞİM" data-en="CONTACT" data-ar="اتصل بنا">İLETİŞİM</h4>
+                <ul>
+                    <li><a href="tel:05412534372"><span class="footer-icon">📞</span> 0541 253 43 72</a></li>
+                    <li><a href="https://www.instagram.com/scnmaisson" target="_blank"><span class="footer-icon">📸</span> @scnmaisson</a></li>
+                    <li><span class="footer-icon">📍</span> Batman Merkez</li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h4 data-tr="HIZLI LİNKLER" data-en="QUICK LINKS" data-ar="روابط سريعة">HIZLI LİNKLER</h4>
+                <ul>
+                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About Us" data-ar="من نحن">Hakkımızda</a></li>
+                    <li><a href="kvkk.html" data-tr="KVKK & Çerezler" data-en="KVKK & Cookies" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
+                    <li><a href="admin.html" data-tr="Yönetici Paneli" data-en="Admin Panel" data-ar="لوحة الإدارة">Yönetici Paneli</a></li>
+                </ul>
+            </div>
         </div>
-        <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
     </footer>
 
-    <script src="dil.js"></script>
+    <script type="module" src="dil.js"></script>
 </body>
 </html>
