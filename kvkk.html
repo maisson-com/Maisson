@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KVKK & Çerez Politikası | MAISSON</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500;600&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .kvkk-hero {
@@ -20,15 +20,6 @@
             padding-top: 100px;
         }
         .kvkk-content-wrapper { max-width: 1000px; margin: 0 auto; padding: 80px 50px; }
-        .kvkk-intro {
-            background-color: rgba(201, 169, 110, 0.08);
-            border-left: 3px solid var(--gold);
-            padding: 20px 25px;
-            margin-bottom: 50px;
-            font-size: 0.9rem;
-            color: var(--light-text);
-            line-height: 1.8;
-        }
         .kvkk-block { margin-bottom: 50px; }
         .kvkk-block h2 {
             font-family: 'Cinzel', serif;
@@ -39,171 +30,119 @@
             padding-bottom: 15px;
             border-bottom: 1px solid var(--border-color);
         }
-        .kvkk-block h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--light-text); letter-spacing: 1px; margin-top: 30px; margin-bottom: 15px; }
-        .kvkk-block p { font-size: 0.9rem; color: var(--light-text); line-height: 1.9; margin-bottom: 15px; text-align: justify; }
+        .kvkk-block h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--light-text); letter-spacing: 1px; margin-top: 30px; margin-bottom: 15px; }
+        .kvkk-block p { font-size: 0.95rem; color: var(--light-text); line-height: 1.9; margin-bottom: 15px; text-align: justify; }
         .kvkk-block ul { margin: 15px 0 20px 30px; padding-left: 10px; }
-        .kvkk-block ul li { font-size: 0.9rem; color: var(--light-text); line-height: 1.9; margin-bottom: 10px; list-style-type: disc; }
-        .cookie-table { width: 100%; border-collapse: collapse; margin: 25px 0; background-color: var(--card-bg); border: 1px solid var(--border-color); }
-        .cookie-table th { background-color: #111; color: var(--gold); padding: 15px; text-align: left; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
-        .cookie-table td { padding: 15px; font-size: 0.85rem; color: var(--light-text); border-bottom: 1px solid var(--border-color); line-height: 1.6; }
-        .cookie-table tr:hover { background-color: rgba(201, 169, 110, 0.03); }
-        .warning-note { background-color: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; padding: 15px 20px; margin: 20px 0; font-size: 0.85rem; color: #ff8a80; line-height: 1.8; }
+        .kvkk-block ul li { font-size: 0.95rem; color: var(--light-text); line-height: 1.9; margin-bottom: 10px; list-style-type: disc; }
+        .warning-note { background-color: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; padding: 15px 20px; margin: 20px 0; font-size: 0.9rem; color: #ff8a80; line-height: 1.8; }
         body.rtl .kvkk-block p { text-align: right; }
         body.rtl .kvkk-block ul { margin: 15px 30px 20px 0; }
-        body.rtl .cookie-table th { text-align: right; }
         @media (max-width: 900px) {
             .kvkk-content-wrapper { padding: 60px 20px; }
             .kvkk-block h2 { font-size: 1.2rem; }
-            .cookie-table { font-size: 0.75rem; }
-            .cookie-table th, .cookie-table td { padding: 10px; }
         }
     </style>
 </head>
 <body>
-
     <header>
         <div class="header-left">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Maisson Logo">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.png" alt="Maisson Logo"></a>
             <nav>
                 <ul>
-                    <li><a href="index.html" data-tr="Ana Sayfa" data-ku="Malpera Sereke" data-ar="الرئيسية">Ana Sayfa</a></li>
-                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-ku="Derbarê Me" data-ar="من نحن">Hakkımızda</a></li>
-                    <li><a href="kvkk.html" class="active" data-tr="KVKK & Çerezler" data-ku="KVKK & Çerez" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About Us" data-ar="من نحن">Hakkımızda</a></li>
+                    <li><a href="kvkk.html" class="active" data-tr="KVKK & Çerezler" data-en="KVKK & Cookies" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
                 </ul>
             </nav>
         </div>
-
-        <div class="search-center">
-            <div class="trendyol-search-bar">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="Ürün, kategori veya marka ara..." autocomplete="off">
-                <button class="search-clear" onclick="clearSearch()">✕</button>
-            </div>
-        </div>
-
         <div class="header-right">
             <div class="lang-selector">
                 <button class="active" onclick="changeLang('tr', this)">TR</button>
-                <button onclick="changeLang('ku', this)">KU</button>
+                <button onclick="changeLang('en', this)">EN</button>
                 <button onclick="changeLang('ar', this)">AR</button>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()" title="Karanlık/Aydınlık Mod">
-                <span id="themeIcon">🌙</span>
-            </button>
+            <button class="theme-toggle" onclick="toggleTheme()"><span id="themeIcon">🌙</span></button>
         </div>
     </header>
 
     <section class="kvkk-hero">
         <div class="hero-content">
-            <h1 data-tr="KVKK & ÇEREZLER" data-ku="KVKK & ÇEREZ" data-ar="KVKK وملفات تعريف الارتباط">KVKK & ÇEREZLER</h1>
-            <p data-tr="Kişisel Verilerin Korunması ve Çerez Politikası" data-ku="Parastina Daneyên Kesane û Siyaseta Çerezan" data-ar="حماية البيانات الشخصية وسياسة ملفات تعريف الارتباط">Kişisel Verilerin Korunması ve Çerez Politikası</p>
+            <h1 data-tr="KVKK & GİZLİLİK" data-en="KVKK & PRIVACY" data-ar="KVKK والخصوصية">KVKK & GİZLİLİK</h1>
+            <p data-tr="Kişisel Verilerin Korunması ve Gizlilik Politikası" data-en="Personal Data Protection and Privacy Policy" data-ar="حماية البيانات الشخصية وسياسة الخصوصية">Kişisel Verilerin Korunması ve Gizlilik Politikası</p>
         </div>
     </section>
 
     <div class="kvkk-content-wrapper">
-        <div class="kvkk-intro">
-            <p data-tr="Bu sayfa, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında MAISSON tarafından hazırlanmıştır. Sitemizi kullanarak aşağıdaki şartları kabul etmiş sayılırsınız." data-ku="Ev rûpel li gorî Qanûna Parastina Daneyên Kesane (KVKK) hejmar 6698 ji hêla MAISSON ve hatî amadekirin. Bi karanîna malpera me, hûn têne hesibandin ku şertên jêrîn qebûl kirine." data-ar="تم إعداد هذه الصفحة من قبل ميسون وفقًا لقانون حماية البيانات الشخصية رقم ٦٦٩٨ (KVKK). باستخدامك لموقعنا، يُعتبر أنك قد قبلت الشروط التالية.">Bu sayfa, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında MAISSON tarafından hazırlanmıştır. Sitemizi kullanarak aşağıdaki şartları kabul etmiş sayılırsınız.</p>
+        <div class="kvkk-block">
+            <h2 data-tr="1. Kişisel Verilerin İşlenme Amacı ve Gizlilik" data-en="1. Purpose of Processing Personal Data and Privacy" data-ar="١. الغرض من معالجة البيانات الشخصية والخصوصية">1. Kişisel Verilerin İşlenme Amacı ve Gizlilik</h2>
+            <p data-tr="Tarafımıza sunduğunuz kişisel veriler (ad, soyad, iletişim ve adres bilgileri vb.), yalnızca mesafeli satış sözleşmesinin ifası, sipariş süreçlerinin yürütülmesi, ürün teslimatı ve faturalandırma işlemlerinin gerçekleştirilmesi amacıyla işlenmektedir." data-en="The personal data you provide to us (name, surname, contact and address information, etc.) are processed only for the purpose of fulfilling the distance sales contract, executing order processes, product delivery and billing transactions." data-ar="تتم معالجة البيانات الشخصية التي تقدمها لنا (الاسم، اللقب، معلومات الاتصال والعنوان، إلخ) فقط لغرض تنفيذ عقد البيع عن بعد، وتنفيذ عمليات الطلب، وتسليم المنتجات ومعاملات الفواتير.">Tarafımıza sunduğunuz kişisel veriler (ad, soyad, iletişim ve adres bilgileri vb.), yalnızca mesafeli satış sözleşmesinin ifası, sipariş süreçlerinin yürütülmesi, ürün teslimatı ve faturalandırma işlemlerinin gerçekleştirilmesi amacıyla işlenmektedir.</p>
+            <p data-tr="Kişisel verileriniz, yasal düzenlemeler kapsamındaki zorunluluklar dışında, ticari veya sair hiçbir amaçla yasal olmayan yollarla veya izniniz olmaksızın kullanılmaz." data-en="Your personal data will not be used for any commercial or other purpose, by illegal means or without your permission, except for the obligations under legal regulations." data-ar="لن يتم استخدام بياناتك الشخصية لأي غرض تجاري أو غيره، بوسائل غير قانونية أو دون إذنك، باستثناء الالتزامات بموجب اللوائح القانونية.">Kişisel verileriniz, yasal düzenlemeler kapsamındaki zorunluluklar dışında, ticari veya sair hiçbir amaçla yasal olmayan yollarla veya izniniz olmaksızın kullanılmaz.</p>
         </div>
 
         <div class="kvkk-block">
-            <h2 data-tr="1. KİŞİSEL VERİLERİN KORUNMASI KANUNU (KVKK) AYDINLATMA METNİ" data-ku="1. NIVÎSARA RONÎKIRINÊ YA QANÛNA PARASTINA DANEYÊN KESANE (KVKK)" data-ar="١. نص توضيح قانون حماية البيانات الشخصية (KVKK)">1. KİŞİSEL VERİLERİN KORUNMASI KANUNU (KVKK) AYDINLATMA METNİ</h2>
-            
-            <h3 data-tr="1.1. Veri Sorumlusu" data-ku="1.1. Berpirsyarê Daneyan" data-ar="١.١. المسؤول عن البيانات">1.1. Veri Sorumlusu</h3>
-            <p data-tr="6698 sayılı Kişisel Verilerin Korunması Kanunu ('KVKK') uyarınca kişisel verileriniz, veri sorumlusu olarak MAISSON tarafından aşağıda açıklanan kapsamda işlenebilecektir." data-ku="Li gorî Qanûna Parastina Daneyên Kesane ('KVKK') hejmar 6698, daneyên we yên kesane, wekî berpirsyarê daneyan ji hêla MAISSON ve di çarçoveya ku li jêr hatî ravekirin de têne hilberandin." data-ar="وفقًا لقانون حماية البيانات الشخصية رقم ٦٦٩٨ ('KVKK')، ستتم معالجة بياناتك الشخصية من قبل ميسون بصفتها المسؤول عن البيانات في النطاق الموضح أدناه.">6698 sayılı Kişisel Verilerin Korunması Kanunu ('KVKK') uyarınca kişisel verileriniz, veri sorumlusu olarak MAISSON tarafından aşağıda açıklanan kapsamda işlenebilecektir.</p>
+            <h2 data-tr="2. Kişisel Verilerin 3. Taraflara Aktarılması" data-en="2. Transfer of Personal Data to 3rd Parties" data-ar="٢. نقل البيانات الشخصية إلى أطراف ثالثة">2. Kişisel Verilerin 3. Taraflara Aktarılması</h2>
+            <p data-tr="Kişisel verileriniz, açık rızanız olmadan üçüncü kişilerle kesinlikle paylaşılmaz, satılmaz veya aktarılmaz." data-en="Your personal data will never be shared, sold or transferred to third parties without your explicit consent." data-ar="لن يتم مشاركة بياناتك الشخصية أو بيعها أو نقلها إلى أطراف ثالثة دون موافقتك الصريحة.">Kişisel verileriniz, açık rızanız olmadan üçüncü kişilerle kesinlikle paylaşılmaz, satılmaz veya aktarılmaz.</p>
+            <p data-tr="Verileriniz yalnızca yasal yükümlülüklerin yerine getirilmesi amacıyla yetkili kamu kurum ve kuruluşları ile yetkili kargo/lojistik firmaları dışında hiçbir üçüncü tarafla paylaşılmamaktadır." data-en="Your data is shared with third parties only with authorized public institutions and organizations and authorized cargo/logistics companies for the purpose of fulfilling legal obligations." data-ar="تتم مشاركة بياناتك مع أطراف ثالثة فقط مع المؤسسات والمنظمات العامة المعتمدة وشركات الشحن/اللوجستيات المعتمدة لغرض الوفاء بالالتزامات القانونية.">Verileriniz yalnızca yasal yükümlülüklerin yerine getirilmesi amacıyla yetkili kamu kurum ve kuruluşları ile yetkili kargo/lojistik firmaları dışında hiçbir üçüncü tarafla paylaşılmamaktadır.</p>
+        </div>
 
-            <h3 data-tr="1.2. İşlenen Kişisel Veriler" data-ku="1.2. Daneyên Kesane yên Têne Hilberandin" data-ar="١.٢. البيانات الشخصية المعالجة">1.2. İşlenen Kişisel Veriler</h3>
-            <p data-tr="Sitemiz üzerinden aşağıdaki kişisel verileriniz işlenmektedir:" data-ku="Bi rêya malpera me, daneyên we yên kesane yên jêrîn têne hilberandin:" data-ar="من خلال موقعنا، تتم معالجة بياناتك الشخصية التالية:">Sitemiz üzerinden aşağıdaki kişisel verileriniz işlenmektedir:</p>
+        <div class="kvkk-block">
+            <h2 data-tr="3. Ödeme Güvenliği ve İşlem Esasları" data-en="3. Payment Security and Transaction Principles" data-ar="٣. أمن الدفع ومبادئ المعاملات">3. Ödeme Güvenliği ve İşlem Esasları</h2>
+            <p data-tr="Müşteri ve veri güvenliğiniz gereği; tüm ödeme işlemleri yalnızca yetkili e-ticaret platformları (güvenli ödeme altyapıları) veya şirketimize ait resmi, kayıtlı IBAN hesapları üzerinden gerçekleştirilmektedir." data-en="For your customer and data security; all payment transactions are carried out only through authorized e-commerce platforms (secure payment infrastructures) or official, registered IBAN accounts belonging to our company." data-ar="من أجل أمان العميل والبيانات؛ تتم جميع معاملات الدفع فقط من خلال منصات التجارة الإلكترونية المعتمدة (البنية التحتية للدفع الآمن) أو حسابات IBAN الرسمية المسجلة الخاصة بشركتنا.">Müşteri ve veri güvenliğiniz gereği; tüm ödeme işlemleri yalnızca yetkili e-ticaret platformları (güvenli ödeme altyapıları) veya şirketimize ait resmi, kayıtlı IBAN hesapları üzerinden gerçekleştirilmektedir.</p>
+            <p data-tr="Resmi şirket IBAN bilgileri dışındaki şahsi veya yetkisiz hesaplara ödeme talep edilmemektedir." data-en="Payment is not requested to personal or unauthorized accounts other than official company IBAN information." data-ar="لا يُطلب الدفع إلى حسابات شخصية أو غير مصرح بها بخلاف معلومات IBAN الرسمية للشركة.">Resmi şirket IBAN bilgileri dışındaki şahsi veya yetkisiz hesaplara ödeme talep edilmemektedir.</p>
+        </div>
+
+        <div class="kvkk-block">
+            <h2 data-tr="4. Fatura ve Belgelendirme" data-en="4. Invoice and Documentation" data-ar="٤. الفاتورة والتوثيق">4. Fatura ve Belgelendirme</h2>
+            <p data-tr="Satın aldığınız tüm ürün ve hizmetlerin faturası, yasal mevzuata uygun şekilde doğrudan adınıza / firmanıza düzenlenmekte ve tarafınıza teslim edilmektedir." data-en="The invoice for all products and services you purchase is issued directly in your name / company in accordance with legal regulations and delivered to you." data-ar="يتم إصدار فاتورة جميع المنتجات والخدمات التي تشتريها مباشرة باسمك / شركتك وفقًا للوائح القانونية وتسليمها إليك.">Satın aldığınız tüm ürün ve hizmetlerin faturası, yasal mevzuata uygun şekilde doğrudan adınıza / firmanıza düzenlenmekte ve tarafınıza teslim edilmektedir.</p>
+        </div>
+
+        <div class="kvkk-block">
+            <h2 data-tr="5. Ürün İade ve Cayma Hakkı Şartları" data-en="5. Product Return and Right of Withdrawal Conditions" data-ar="٥. شروط إرجاع المنتج وحق الانسحاب">5. Ürün İade ve Cayma Hakkı Şartları</h2>
             <ul>
-                <li data-tr="Ad ve soyad" data-ku="Nav û paşnav" data-ar="الاسم واللقب">Ad ve soyad</li>
-                <li data-tr="E-posta adresi" data-ku="Navnîşana e-nameyê" data-ar="عنوان البريد الإلكتروني">E-posta adresi</li>
-                <li data-tr="Telefon numarası" data-ku="Hejmara telefonê" data-ar="رقم الهاتف">Telefon numarası</li>
-                <li data-tr="Teslimat adresi" data-ku="Navnîşana radestkirinê" data-ar="عنوان التسليم">Teslimat adresi</li>
-                <li data-tr="Fatura bilgileri" data-ku="Agahdariya fatûreyê" data-ar="معلومات الفاتورة">Fatura bilgileri</li>
-                <li data-tr="Site kullanım verileri (çerezler)" data-ku="Daneyên karanîna malperê (çerez)" data-ar="بيانات استخدام الموقع (ملفات تعريف الارتباط)">Site kullanım verileri (çerezler)</li>
-            </ul>
-
-            <h3 data-tr="1.3. Kişisel Verilerin İşlenme Amaçları" data-ku="1.3. Armancên Hilberandina Daneyan" data-ar="١.٣. أغراض معالجة البيانات">1.3. Kişisel Verilerin İşlenme Amaçları</h3>
-            <ul>
-                <li data-tr="Siparişlerinizin işlenmesi ve takibi" data-ku="Pêvajokirin û şopandina fermanên we" data-ar="معالجة وتتبع طلباتك">Siparişlerinizin işlenmesi ve takibi</li>
-                <li data-tr="Ürün teslimatının sağlanması" data-ku="Dabînkirina radestkirina berheman" data-ar="ضمان تسليم المنتجات">Ürün teslimatının sağlanması</li>
-                <li data-tr="Müşteri hizmetleri desteği" data-ku="Piştgiriya xizmeta xerîdar" data-ar="دعم خدمة العملاء">Müşteri hizmetleri desteği</li>
-                <li data-tr="Kampanya ve indirimlerden haberdar edilmeniz" data-ku="Agahdarkirina we ji kampanya û daxistinan" data-ar="إبلاغك بالحملات والتخفيضات">Kampanya ve indirimlerden haberdar edilmeniz</li>
-                <li data-tr="Yasal yükümlülüklerin yerine getirilmesi" data-ku="Bicîhkirina erkên qanûnî" data-ar="الوفاء بالالتزامات القانونية">Yasal yükümlülüklerin yerine getirilmesi</li>
-            </ul>
-
-            <h3 data-tr="1.4. Kişisel Verilerin Aktarılması" data-ku="1.4. Veguhestina Daneyan" data-ar="١.٤. نقل البيانات">1.4. Kişisel Verilerin Aktarılması</h3>
-            <p data-tr="Kişisel verileriniz; kargo firmaları, ödeme kuruluşları, yasal merciler ve hizmet aldığımız üçüncü taraf tedarikçilerle, yalnızca gerekli olduğu ölçüde ve yasal çerçevede paylaşılır. Verileriniz hiçbir koşulda ticari amaçla üçüncü kişilere satılmaz." data-ku="Daneyên we yên kesane; bi pargîdaniyên kargoyê, saziyên dravdanê, rayedarên qanûnî û dabînkerên aliyê sêyem re, tenê bi qasî ku pêwîst be û di çarçoveya qanûnî de têne parve kirin. Daneyên we di bin tu mercan de ji bo armancên bazirganî ji aliyên sêyem re nayên firotin." data-ar="تتم مشاركة بياناتك الشخصية مع شركات الشحن، ومؤسسات الدفع، والجهات القانونية، والموردين من الأطراف الثالثة، فقط بالقدر اللازم وفي إطار قانوني. لا يتم بيع بياناتك لأطراف ثالثة لأغراض تجارية تحت أي ظرف.">Kişisel verileriniz; kargo firmaları, ödeme kuruluşları, yasal merciler ve hizmet aldığımız üçüncü taraf tedarikçilerle, yalnızca gerekli olduğu ölçüde ve yasal çerçevede paylaşılır. Verileriniz hiçbir koşulda ticari amaçla üçüncü kişilere satılmaz.</p>
-
-            <h3 data-tr="1.5. Veri Sahibinin Hakları" data-ku="1.5. Mafên Xwedanê Daneyan" data-ar="١.٥. حقوق صاحب البيانات">1.5. Veri Sahibinin Hakları</h3>
-            <p data-tr="KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:" data-ku="Li gorî madeya 11-an a KVKK-ê, mafên jêrîn hene:" data-ar="وفقًا للمادة ١١ من KVKK، لديك الحقوق التالية:">KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:</p>
-            <ul>
-                <li data-tr="Kişisel verilerinizin işlenip işlenmediğini öğrenme" data-ku="Zanîna ka daneyên we têne hilberandin an na" data-ar="معرفة ما إذا كانت بياناتك قد تمت معالجتها">Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
-                <li data-tr="İşlenmişse buna ilişkin bilgi talep etme" data-ku="Heke hatibe hilberandin, agahdarî bixwazin" data-ar="طلب معلومات حول ذلك إذا تمت معالجتها">İşlenmişse buna ilişkin bilgi talep etme</li>
-                <li data-tr="Düzeltilmesini veya silinmesini isteme" data-ku="Rastkirin an jêbirinê bixwazin" data-ar="طلب تصحيحها أو حذفها">Düzeltilmesini veya silinmesini isteme</li>
-                <li data-tr="İşlenmesine itiraz etme" data-ku="Li dijî hilberandinê protesto bikin" data-ar="الاعتراض على معالجتها">İşlenmesine itiraz etme</li>
+                <li data-tr="Genel İade Süresi: Satın alınan ürünlerde koşulsuz iade süresi teslimat tarihinden itibaren 3 (üç) gündür." data-en="General Return Period: The unconditional return period for purchased products is 3 (three) days from the delivery date." data-ar="فترة الإرجاع العامة: فترة الإرجاع غير المشروطة للمنتجات المشتراة هي ٣ (ثلاثة) أيام من تاريخ التسليم.">Genel İade Süresi: Satın alınan ürünlerde koşulsuz iade süresi teslimat tarihinden itibaren 3 (üç) gündür.</li>
+                <li data-tr="Ayıplı/Kusurlu Ürün İade Süresi: Üründe üretimden veya teslimattan kaynaklı herhangi bir sorun, kusur veya ayıp tespit edilmesi durumunda iade ve değişim başvuru süresi teslimat tarihinden itibaren 1 (bir) haftadır." data-en="Defective/Faulty Product Return Period: In case of any problem, defect or flaw arising from production or delivery in the product, the return and exchange application period is 1 (one) week from the delivery date." data-ar="فترة إرجاع المنتج المعيب: في حالة اكتشاف أي مشكلة أو عيب أو خلل ناتج عن الإنتاج أو التسليم في المنتج، تكون فترة طلب الإرجاع والاستبدال أسبوعًا واحدًا من تاريخ التسليم.">Ayıplı/Kusurlu Ürün İade Süresi: Üründe üretimden veya teslimattan kaynaklı herhangi bir sorun, kusur veya ayıp tespit edilmesi durumunda iade ve değişim başvuru süresi teslimat tarihinden itibaren 1 (bir) haftadır.</li>
+                <li data-tr="İade işlemlerinin gerçekleştirilebilmesi için ürünün faturasıyla birlikte, kullanılmamış ve yeniden satılabilirliğini kaybetmemiş şekilde tarafımıza ulaştırılması gerekmektedir." data-en="In order for return transactions to be carried out, the product must be delivered to us with its invoice, unused and without losing its resaleability." data-ar="من أجل تنفيذ عمليات الإرجاع، يجب تسليم المنتج إلينا مع فاتورته، غير مستخدم ودون فقدان قابليته لإعادة البيع.">İade işlemlerinin gerçekleştirilebilmesi için ürünün faturasıyla birlikte, kullanılmamış ve yeniden satılabilirliğini kaybetmemiş şekilde tarafımıza ulaştırılması gerekmektedir.</li>
             </ul>
         </div>
 
         <div class="kvkk-block">
-            <h2 data-tr="2. ÇEREZ (COOKIE) POLİTİKASI" data-ku="2. SİYASETA ÇEREZAN (COOKIE)" data-ar="٢. سياسة ملفات تعريف الارتباط (الكوكيز)">2. ÇEREZ (COOKIE) POLİTİKASI</h2>
-            
-            <h3 data-tr="2.1. Çerez Nedir?" data-ku="2.1. Çerez Çi ye?" data-ar="٢.١. ما هي ملفات تعريف الارتباط؟">2.1. Çerez Nedir?</h3>
-            <p data-tr="Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcınıza kaydedilen küçük metin dosyalarıdır. Bu dosyalar sayesinde site, sizi tanıyabilir ve tercihlerinizi hatırlayabilir." data-ku="Çerez, pelgeyên nivîsê yên piçûk in ku ji hêla malperên ku hûn serdana wan dikin ve di geroka we de têne tomar kirin. Bi saya van pelgeyan, malper dikare we nas bike û tercîhên we bi bîr bîne." data-ar="ملفات تعريف الارتباط هي ملفات نصية صغيرة يتم حفظها في متصفحك من قبل المواقع الإلكترونية التي تزورها. بفضل هذه الملفات، يمكن للموقع التعرف عليك وتذكر تفضيلاتك.">Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcınıza kaydedilen küçük metin dosyalarıdır. Bu dosyalar sayesinde site, sizi tanıyabilir ve tercihlerinizi hatırlayabilir.</p>
-
-            <h3 data-tr="2.2. Hangi Çerezleri Kullanıyoruz?" data-ku="2.2. Em Kîjan Çerezan Bikar Tînin?" data-ar="٢.٢. ما هي ملفات تعريف الارتباط التي نستخدمها؟">2.2. Hangi Çerezleri Kullanıyoruz?</h3>
-            <table class="cookie-table">
-                <thead>
-                    <tr>
-                        <th data-tr="Çerez Türü" data-ku="Cûreya Çerezê" data-ar="نوع ملف تعريف الارتباط">Çerez Türü</th>
-                        <th data-tr="Amaç" data-ku="Armanc" data-ar="الغرض">Amaç</th>
-                        <th data-tr="Süre" data-ku="Dem" data-ar="المدة">Süre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-tr="Zorunlu Çerezler" data-ku="Çerezên Mejûrî" data-ar="ملفات تعريف الارتباط الضرورية">Zorunlu Çerezler</td>
-                        <td data-tr="Sitenin temel işlevleri için gereklidir" data-ku="Ji bo fonksiyonên bingehîn ên malperê pêwîst in" data-ar="ضرورية للوظائف الأساسية للموقع">Sitenin temel işlevleri için gereklidir</td>
-                        <td data-tr="Oturum Süresi" data-ku="Demjimêra Danîşînê" data-ar="مدة الجلسة">Oturum Süresi</td>
-                    </tr>
-                    <tr>
-                        <td data-tr="Performans Çerezleri" data-ku="Çerezên Performansê" data-ar="ملفات تعريف الارتباط الأداء">Performans Çerezleri</td>
-                        <td data-tr="Site kullanımını analiz eder" data-ku="Bikaranîna malperê analîz dike" data-ar="تحليل استخدام الموقع">Site kullanımını analiz eder</td>
-                        <td data-tr="2 Yıl" data-ku="2 Sal" data-ar="سنتان">2 Yıl</td>
-                    </tr>
-                    <tr>
-                        <td data-tr="Dil Çerezleri" data-ku="Çerezên Ziman" data-ar="ملفات تعريف الارتباط اللغة">Dil Çerezleri</td>
-                        <td data-tr="Seçtiğiniz dili hatırlar" data-ku="Zimanê ku we hilbijartiye bi bîr tîne" data-ar="يتذكر اللغة التي اخترتها">Seçtiğiniz dili hatırlar</td>
-                        <td data-tr="1 Yıl" data-ku="1 Sal" data-ar="سنة واحدة">1 Yıl</td>
-                    </tr>
-                    <tr>
-                        <td data-tr="Pazarlama Çerezleri" data-ku="Çerezên Kirrûbirrê" data-ar="ملفات تعريف الارتباط التسويقية">Pazarlama Çerezleri</td>
-                        <td data-tr="Size uygun kampanyalar sunmak için kullanılır" data-ku="Ji bo pêşkêşkirina kampanyayên guncaw ji we re têne bikar anîn" data-ar="تُستخدم لتقديم حملات مناسبة لك">Size uygun kampanyalar sunmak için kullanılır</td>
-                        <td data-tr="6 Ay" data-ku="6 Meh" data-ar="٦ أشهر">6 Ay</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="kvkk-block">
-            <h2 data-tr="3. POLİTİKA GÜNCELLEMELERİ" data-ku="3. NÛKIRINÊN SIYASETÊ" data-ar="٣. تحديثات السياسة">3. POLİTİKA GÜNCELLEMELERİ</h2>
-            <p data-tr="MAISSON, bu KVKK ve Çerez Politikası'nı gerektiğinde güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayımlanır ve yürürlüğe girer. Sitemizi kullanmaya devam etmeniz, güncellenmiş politikayı kabul ettiğiniz anlamına gelir." data-ku="MAISSON, mafê xwe diparêze ku dema pêwîst be vê Siyaseta KVKK û Çerezan nûve bike. Nûkirin li ser vê rûpelê têne weşandin û dikevin meriyetê. Berdewamkirina karanîna malpera me tê wateya ku hûn siyaseta nûvekirî qebûl dikin." data-ar="تحتفظ ميسون بالحق في تحديث سياسة KVKK وملفات تعريف الارتباط هذه عند الحاجة. يتم نشر التحديثات على هذه الصفحة وتدخل حيز التنفيذ. استمرارك في استخدام موقعنا يعني أنك تقبل السياسة المحدثة.">MAISSON, bu KVKK ve Çerez Politikası'nı gerektiğinde güncelleme hakkını saklı tutar. Güncellemeler bu sayfada yayımlanır ve yürürlüğe girer. Sitemizi kullanmaya devam etmeniz, güncellenmiş politikayı kabul ettiğiniz anlamına gelir.</p>
+            <h2 data-tr="6. Resmi İletişim Kanalları ve Sorumluluk Reddi" data-en="6. Official Communication Channels and Disclaimer" data-ar="٦. قنوات الاتصال الرسمية وإخلاء المسؤولية">6. Resmi İletişim Kanalları ve Sorumluluk Reddi</h2>
+            <p data-tr="SCN ve MAISSON markaları çatısı altında sunulan tüm hizmet ve ürün ödemeleri, yalnızca resmi iletişim ve satış kanallarımız üzerinden kabul edilmektedir." data-en="All service and product payments offered under the SCN and MAISSON brands are accepted only through our official communication and sales channels." data-ar="تُقبل جميع مدفوعات الخدمات والمنتجات المقدمة تحت علامتي SCN و MAISSON فقط من خلال قنوات الاتصال والمبيعات الرسمية لدينا.">SCN ve MAISSON markaları çatısı altında sunulan tüm hizmet ve ürün ödemeleri, yalnızca resmi iletişim ve satış kanallarımız üzerinden kabul edilmektedir.</p>
+            <p data-tr="Resmi web sitemiz dışındaki yetkisiz mecralar, şahsi hesaplar veya üçüncü taraf kanallar üzerinden yapılacak ödeme ve işlemlerden firmamız sorumlu değildir. Tüm resmi ödeme ve iletişim kanallarımıza doğrudan resmi web sitemiz üzerinden ulaşabilirsiniz." data-en="Our company is not responsible for payments and transactions made through unauthorized channels, personal accounts or third-party channels other than our official website. You can reach all our official payment and communication channels directly through our official website." data-ar="شركتنا ليست مسؤولة عن المدفوعات والمعاملات التي تتم من خلال قنوات غير مصرح بها أو حسابات شخصية أو قنوات طرف ثالث بخلاف موقعنا الرسمي. يمكنك الوصول إلى جميع قنوات الدفع والاتصال الرسمية لدينا مباشرة من خلال موقعنا الرسمي.">Resmi web sitemiz dışındaki yetkisiz mecralar, şahsi hesaplar veya üçüncü taraf kanallar üzerinden yapılacak ödeme ve işlemlerden firmamız sorumlu değildir. Tüm resmi ödeme ve iletişim kanallarımıza doğrudan resmi web sitemiz üzerinden ulaşabilirsiniz.</p>
             <div class="warning-note">
-                <strong data-tr="Son Güncelleme:" data-ku="Nûkirina Dawî:" data-ar="آخر تحديث:">Son Güncelleme:</strong> 
-                <span data-tr="01 Ocak 2024" data-ku="01 Çile 2024" data-ar="٠١ يناير ٢٠٢٤">01 Ocak 2024</span>
+                <strong data-tr="Son Güncelleme:" data-en="Last Update:" data-ar="آخر تحديث:">Son Güncelleme:</strong> 
+                <span data-tr="01 Ocak 2024" data-en="01 January 2024" data-ar="٠١ يناير ٢٠٢٤">01 Ocak 2024</span>
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-links">
-            <a href="hakkimizda.html" data-tr="Hakkımızda" data-ku="Derbarê Me" data-ar="من نحن">Hakkımızda</a>
-            <a href="kvkk.html" data-tr="KVKK & Çerezler" data-ku="KVKK & Çerez" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a>
+        <!-- FOOTER BURAYA GELECEK (Tüm sayfalarda aynı) -->
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">MAISSON</a>
+                <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-en="© 2024 Maisson. All rights reserved." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
+                <p data-tr="Özenle Dokundu, Kaliteyle Sunuldu" data-en="Woven with Care, Presented with Quality" data-ar="منسوج بعناية، ومقدم بجودة عالية.">Özenle Dokundu, Kaliteyle Sunuldu</p>
+            </div>
+            <div class="footer-contact">
+                <h4 data-tr="İLETİŞİM" data-en="CONTACT" data-ar="اتصل بنا">İLETİŞİM</h4>
+                <ul>
+                    <li><a href="tel:05412534372"><span class="footer-icon">📞</span> 0541 253 43 72</a></li>
+                    <li><a href="https://www.instagram.com/scnmaisson" target="_blank"><span class="footer-icon">📸</span> @scnmaisson</a></li>
+                    <li><span class="footer-icon">📍</span> Batman Merkez</li>
+                </ul>
+            </div>
+            <div class="footer-links-col">
+                <h4 data-tr="HIZLI LİNKLER" data-en="QUICK LINKS" data-ar="روابط سريعة">HIZLI LİNKLER</h4>
+                <ul>
+                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About Us" data-ar="من نحن">Hakkımızda</a></li>
+                    <li><a href="kvkk.html" data-tr="KVKK & Çerezler" data-en="KVKK & Cookies" data-ar="KVKK وملفات تعريف الارتباط">KVKK & Çerezler</a></li>
+                    <li><a href="admin.html" data-tr="Yönetici Paneli" data-en="Admin Panel" data-ar="لوحة الإدارة">Yönetici Paneli</a></li>
+                </ul>
+            </div>
         </div>
-        <p data-tr="© 2024 Maisson. Tüm hakları saklıdır." data-ku="© 2024 Maisson. Hemû maf parastî ne." data-ar="© ٢٠٢٤ Maisson. جميع الحقوق محفوظة.">© 2024 Maisson. Tüm hakları saklıdır.</p>
     </footer>
 
-    <script src="dil.js"></script>
+    <script type="module" src="dil.js"></script>
 </body>
 </html>
