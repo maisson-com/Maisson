@@ -1,106 +1,142 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+/* ============================================
+   MAISSON - ORTAK STİL DOSYASI
+   ============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background-color: #0d0d0d; color: #e0e0e0; line-height: 1.6; padding-top: 100px; transition: background-color 0.4s ease, color 0.4s ease; }
+:root { --gold: #c9a96e; --dark-bg: #0d0d0d; --card-bg: #161616; --light-text: #f5f5f5; --muted-text: #888888; --border-color: #2a2a2a; --header-bg: rgba(13, 13, 13, 0.95); }
 
-// FIREBASE AYARLARI
-const firebaseConfig = {
-  apiKey: "AIzaSyB_QgwlRfonAj3PyA3QWEeHZ0qINi9I8Cw",
-  authDomain: "maisson-fb7ae.firebaseapp.com",
-  databaseURL: "https://maisson-fb7ae-default-rtdb.europe-west1.firebasedatabase.app/",
-  projectId: "maisson-fb7ae",
-  storageBucket: "maisson-fb7ae.firebasestorage.app",
-  messagingSenderId: "1041887335858",
-  appId: "1:1041887335858:web:92f88a256991e19d85c0ab"
-};
+/* AYDINLIK MOD */
+body.light-mode { --dark-bg: #f5f5f5; --card-bg: #ffffff; --light-text: #1a1a1a; --muted-text: #666666; --border-color: #e0e0e0; --header-bg: rgba(255, 255, 255, 0.95); background-color: #f5f5f5; color: #1a1a1a; }
+body.light-mode nav a, body.light-mode .theme-toggle, body.light-mode .product-info h4 { color: #1a1a1a; }
+body.light-mode .section-title { color: #1a1a1a; }
+body.light-mode footer { background-color: #ffffff; color: #666; }
+body.light-mode footer a { color: #666; }
+body.light-mode .category-card, body.light-mode .product-card { background-color: #ffffff; }
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
-// Global fonksiyonlar
-window.firebaseDB = database;
-window.firebaseRef = ref;
-window.firebaseSet = set;
-window.firebaseOnValue = onValue;
-window.firebasePush = push;
-
-// ============================================
-// DİL DEĞİŞTİRME SİSTEMİ (DÜZELTİLDİ)
-// ============================================
-function changeLang(lang, btn) {
-    // Tüm butonlardan active sınıfını kaldır, tıklanana ekle
-    if (btn) {
-        document.querySelectorAll('.lang-selector button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
-    // Dili hafızaya kaydet
-    localStorage.setItem('maissonLang', lang);
-    // Dili uygula
-    applyLanguage(lang);
+/* HERO AYDINLIK MOD */
+body.light-mode .hero { 
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7)), 
+    url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; 
 }
-
-function applyLanguage(lang) {
-    // Sayfa yönünü (RTL) ayarla
-    document.documentElement.setAttribute('lang', lang);
-    if (lang === 'ar') {
-        document.body.classList.add('rtl');
-    } else {
-        document.body.classList.remove('rtl');
-    }
-
-    // Sayfadaki tüm data-tr, data-en, data-ar etiketlerini bul
-    document.querySelectorAll('[data-tr], [data-en], [data-ar]').forEach(el => {
-        // Eğer elementin data-{lang} özelliği varsa, onu metin olarak ata
-        const translatedText = el.getAttribute(`data-${lang}`);
-        if (translatedText) {
-            el.textContent = translatedText;
-        }
-    });
+body.light-mode .page-hero { 
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8)), 
+    url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; 
 }
+body.light-mode .hero h1, body.light-mode .page-hero h1 { color: #1a1a1a; }
+body.light-mode .hero p, body.light-mode .page-hero p { color: #1a1a1a; }
 
-// ============================================
-// TEMA DEĞİŞTİRME
-// ============================================
-function toggleTheme() {
-    const body = document.body;
-    const icon = document.getElementById('themeIcon');
-    if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode'); 
-        localStorage.setItem('maissonTheme', 'dark'); 
-        if (icon) icon.textContent = '🌙';
-    } else {
-        body.classList.add('light-mode'); 
-        localStorage.setItem('maissonTheme', 'light'); 
-        if (icon) icon.textContent = '☀️';
-    }
+/* ARAPÇA RTL */
+body.rtl { direction: rtl; text-align: right; font-family: 'Tajawal', 'Cairo', sans-serif; }
+body.rtl h1, body.rtl h2, body.rtl h3, body.rtl h4 { font-family: 'Tajawal', 'Cairo', sans-serif; letter-spacing: 0 !important; }
+body.rtl header { flex-direction: row-reverse; }
+body.rtl .header-left { flex-direction: row-reverse; }
+body.rtl nav ul { flex-direction: row-reverse; }
+body.rtl .lang-selector { flex-direction: row-reverse; }
+body.rtl .category-info { text-align: right; }
+body.rtl .product-info { text-align: right; }
+body.rtl .hero-content { text-align: center; }
+body.rtl nav a { text-transform: none; letter-spacing: 0; font-size: 14px; }
+body.rtl .section-subtitle, body.rtl .category-info p, body.rtl .product-link, body.rtl .btn, body.rtl .hero p { text-transform: none; letter-spacing: 0; }
+
+/* HEADER */
+header { position: fixed; top: 0; width: 100%; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; border-bottom: 1px solid rgba(201, 169, 110, 0.15); backdrop-filter: blur(10px); gap: 20px; transition: background-color 0.4s ease; }
+.header-left { display: flex; align-items: center; gap: 30px; flex-shrink: 0; }
+
+/* LOGO SABİTLEME (Tamamen Şeffaf ve Beyaz) */
+.logo { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: transparent; 
+    border: none; 
+    padding: 0; 
+    width: 75px; 
+    height: 75px; 
+    text-decoration: none;
+    transition: transform 0.3s ease;
 }
+.logo:hover { transform: scale(1.05); }
+.logo img { width: 100%; height: 100%; object-fit: contain; }
 
-// ============================================
-// SAYFA YÜKLENDİĞİNDE HAFIZAYI UYGULA
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Kayıtlı dili uygula
-    const savedLang = localStorage.getItem('maissonLang') || 'tr';
-    applyLanguage(savedLang);
+nav ul { display: flex; list-style: none; gap: 30px; flex-wrap: wrap; }
+nav a { text-decoration: none; color: var(--light-text); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; transition: color 0.3s ease; padding-bottom: 3px; border-bottom: 2px solid transparent; white-space: nowrap; }
+nav a:hover, nav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
 
-    // Dil butonlarını güncelle
-    document.querySelectorAll('.lang-selector button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.trim().toLowerCase() === savedLang) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // Kayıtlı temayı uygula
-    const savedTheme = localStorage.getItem('maissonTheme') || 'dark';
-    const icon = document.getElementById('themeIcon');
-    if (savedTheme === 'light') { 
-        document.body.classList.add('light-mode'); 
-        if (icon) icon.textContent = '☀️'; 
-    } else { 
-        document.body.classList.remove('light-mode'); 
-        if (icon) icon.textContent = '🌙'; 
-    }
-});
+/* ARAMA ÇUBUĞU */
+.search-center { flex-grow: 1; max-width: 500px; margin: 0 auto; position: relative; }
+.trendyol-search-bar { display: flex; align-items: center; width: 100%; background-color: #1a1a1a; border: 2px solid #2a2a2a; border-radius: 8px; padding: 0 15px; transition: all 0.2s ease; height: 40px; }
+.trendyol-search-bar:hover { background-color: #1f1f1f; border-color: #3a3a3a; }
+.trendyol-search-bar:focus-within { background-color: #1a1a1a; border-color: #c9a96e; box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15); }
+body.light-mode .trendyol-search-bar { background-color: #f5f5f5; border-color: #e0e0e0; }
+body.light-mode .trendyol-search-bar:focus-within { background-color: #ffffff; border-color: #c9a96e; }
+.trendyol-search-bar .search-icon { font-size: 16px; color: #888; margin-right: 10px; flex-shrink: 0; }
+.trendyol-search-bar input { flex: 1; background: transparent; border: none; outline: none; font-family: 'Montserrat', sans-serif; font-size: 13px; color: #f5f5f5; padding: 0; }
+body.light-mode .trendyol-search-bar input { color: #333; }
+.trendyol-search-bar input::placeholder { color: #888; }
+.trendyol-search-bar .search-clear { background: transparent; border: none; color: #888; font-size: 14px; cursor: pointer; padding: 0 5px; display: none; transition: color 0.2s; }
+.trendyol-search-bar .search-clear:hover { color: #c9a96e; }
+.trendyol-search-bar .search-clear.visible { display: block; }
 
-// Fonksiyonları HTML'den çağrılabilir yap
-window.changeLang = changeLang;
-window.toggleTheme = toggleTheme;
+/* DİL ve TEMA */
+.header-right { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+.lang-selector { display: flex; gap: 5px; align-items: center; }
+.lang-selector button { background: transparent; color: var(--muted-text); border: 1px solid transparent; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; padding: 5px 8px; transition: all 0.3s; }
+.lang-selector button:hover { color: var(--gold); }
+.lang-selector button.active { color: var(--gold); border: 1px solid var(--gold); }
+.theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--light-text); font-size: 16px; cursor: pointer; padding: 6px 10px; border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.theme-toggle:hover { border-color: var(--gold); transform: rotate(20deg); }
+
+/* YÖNETİCİ BUTONU */
+.admin-btn { display: flex; align-items: center; gap: 6px; background-color: transparent; border: 1px solid var(--border-color); color: var(--muted-text); text-decoration: none; padding: 8px 14px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; white-space: nowrap; }
+.admin-btn:hover { border-color: var(--gold); color: var(--gold); background-color: rgba(201, 169, 110, 0.08); }
+
+/* HERO */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; background-position: center 40%; margin-top: -100px; }
+.hero-video { position: relative; overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: -100px; }
+.hero-video-bg { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: 0; object-fit: cover; }
+.hero-video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)); z-index: 1; }
+.hero-video .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
+
+/* HERO OVERLAY AYDINLIK MOD DÜZELTMESİ */
+body.light-mode .hero-video-overlay { background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6)); }
+body.light-mode .hero-video h1 { color: #1a1a1a; }
+body.light-mode .hero-video p { color: #1a1a1a; }
+
+.page-hero { height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
+.hero-content { max-width: 800px; padding: 20px; animation: fadeIn 1.5s ease-out; }
+.hero h1, .hero-video h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; letter-spacing: 8px; margin-bottom: 15px; color: var(--light-text); font-weight: 400; }
+.page-hero h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; letter-spacing: 5px; color: var(--light-text); }
+.hero p, .page-hero p, .hero-video p { font-size: 1rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 40px; font-weight: 300; }
+
+/* KATEGORİLER VE ÜRÜNLER */
+.category-section { padding: 80px 50px; max-width: 1400px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-title { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--light-text); margin-bottom: 10px; letter-spacing: 3px; }
+.category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.category-card { position: relative; height: 350px; overflow: hidden; cursor: pointer; border: 1px solid var(--border-color); transition: border-color 0.3s ease; text-decoration: none; display: block; }
+.category-card:hover { border-color: var(--gold); }
+.category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease, opacity 0.8s ease; opacity: 0.6; }
+.category-card:hover img { transform: scale(1.08); opacity: 0.9; }
+.category-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.95)); text-align: center; }
+.category-info h3 { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 5px; color: #f5f5f5; }
+.category-info p { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+.shop-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 0 50px 80px 50px; gap: 40px; }
+.product-area { flex-grow: 1; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+.product-card { background-color: var(--card-bg); border: 1px solid var(--border-color); transition: transform 0.3s ease, border-color 0.3s ease; cursor: pointer; }
+.product-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+.product-card img { width: 100%; height: 280px; object-fit: cover; }
+.product-info { padding: 15px; text-align: center; }
+.product-info h4 { font-size: 0.9rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 5px; color: var(--light-text); }
+.product-info .price { color: var(--gold); font-weight: 500; font-size: 1rem; }
+.product-link { display: block; padding: 12px; background: transparent; border-top: 1px solid var(--border-color); color: var(--light-text); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; text-decoration: none; transition: all 0.3s ease; margin-top: 10px; text-align: center; }
+.product-link:hover { background: var(--gold); color: var(--dark-bg); }
+
+/* FOOTER */
+footer { text-align: center; padding: 40px 30px; font-size: 0.8rem; color: var(--muted-text); border-top: 1px solid var(--border-color); }
+footer a { color: var(--muted-text); text-decoration: none; margin: 0 15px; font-size: 0.8rem; transition: color 0.3s; }
+footer a:hover { color: var(--gold); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1100px) { header { flex-wrap: wrap; padding: 12px 20px; } .header-left { width: 100%; justify-content: space-between; order: 1; } .search-center { order: 3; max-width: 100%; width: 100%; margin-top: 10px; } .header-right { order: 2; } nav ul { gap: 12px; } nav a { font-size: 10px; letter-spacing: 1px; } }
+@media (max-width: 700px) { .hero h1, .hero-video h1 { font-size: 2.2rem; letter-spacing: 4px; } .hero-video { height: 80vh; } .category-section { padding: 60px 20px; } nav ul { gap: 8px; } .logo { width: 60px; height: 60px; } }
